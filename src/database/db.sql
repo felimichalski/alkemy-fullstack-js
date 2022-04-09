@@ -19,9 +19,9 @@ ALTER TABLE clients
   ADD PRIMARY KEY (ID_CLIENT),
   MODIFY ID_CLIENT int(11) NOT NULL AUTO_INCREMENT;
 
--- Budget table
+-- Budgets table
 
-CREATE TABLE budgets (
+CREATE TABLE operations (
   ID_BUDGET int(11) NOT NULL,
   INCOME int(15) NOT NULL,
   EXPENSES int(15) NOT NULL,
@@ -33,6 +33,6 @@ CREATE TABLE budgets (
 
 -- Configurations
 
-ALTER TABLE budgets
+ALTER TABLE operations
   ADD PRIMARY KEY (ID_BUDGET),
   MODIFY ID_BUDGET int(11) NOT NULL AUTO_INCREMENT;
