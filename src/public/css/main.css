@@ -53,11 +53,12 @@ footer.footer .rights {
 @media only screen and (max-width: 1250px) {
     footer.footer .contact {
         grid-template-columns: repeat(1, 1fr);
+        margin: 1rem 0;
     }
 
     footer.footer .contact .entry {
         font-size: 1.6vw;
-        margin: 2rem 0;
+        margin: 1rem 0;
     }
     
     footer.footer .contact .entry ion-icon {
