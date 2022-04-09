@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Start footer */
+
+footer.footer {
+    height: 100%;
+    background: black;
+    position: relative;
+}
+
+footer.footer .container {
+    padding: 0 2vw;
+}
+
+footer.footer .contact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: white;
+    font-family: Poppins;
+    font-weight: 300;
+    margin: 2rem 0;
+}
+
+footer.footer .contact .entry {
+    font-size: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer.footer .contact .entry ion-icon {
+    margin-right: .5rem;
+    font-size: 2vw;
+}
+
+footer.footer .rights {
+    text-align: center;
+    font-family: Montserrat;
+    color: gray;
+    margin-bottom: 1rem;
+    font-size: 0.896vw;
+}
+
+/* End Footer */
+
+/* Start Viewports */
+
+@media only screen and (max-width: 1250px) {
+    footer.footer .contact {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    footer.footer .contact .entry {
+        font-size: 1.6vw;
+        margin: 2rem 0;
+    }
+    
+    footer.footer .contact .entry ion-icon {
+        height: 1.6vw;
+    }
+
+    footer.footer .rights {
+        font-size: 1.5vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    footer.footer .contact .entry {
+        font-size: 2.8vw;
+    }
+    
+    footer.footer .contact .entry ion-icon {
+        height: 2.8vw;
+    }
+    
+    footer.footer .rights {
+        font-size: 2.2vw;
+    }   
+}
+
+/* End Viewports */
