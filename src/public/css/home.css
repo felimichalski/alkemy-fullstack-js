@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Start footer */
+
+footer.footer {
+    height: 100%;
+    background: black;
+    position: relative;
+}
+
+footer.footer .container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0 2vw;
+}
+
+footer.footer .container > div {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 3.488vw 1.163vw;
+}
+
+footer.footer .container h2 {
+    color: white;
+    padding: 0 0 2rem 0;
+    font-family: Montserrat;
+    font-size: 1.429vw;
+    text-align: center;
+}
+
+footer.footer .schedule .week {
+    list-style: none;
+}
+
+footer.footer .schedule .week .day {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    margin: 1rem 0;
+    font-family: Poppins;
+    font-weight: 300;
+    font-size: 1vw;
+}
+
+footer.footer .schedule .week .day .hour {
+    color: #a9a9a9;
+}
+
+footer.footer .about p {
+    color: #a9a9a9;
+    margin: 1rem 0;
+    font-family: Poppins;
+    font-weight: 300;
+    font-size: 1vw;
+    letter-spacing: .08rem;
+    line-height: 1.5rem;
+    text-align: justify;
+    overflow: hidden;
+}
+
+footer.footer .links .list {
+    list-style: none;
+}
+
+footer.footer .links .list .link-item {
+    margin: 1rem auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+footer.footer .links .list .link-item a {
+    text-decoration: none;
+    color: #B6201B;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 1vw;
+    transition: .3s;
+}
+
+footer.footer .links .list .link-item a:hover {
+    color: #FF6800;
+}
+
+footer.footer .contact {
+    display: flex;
+    flex-direction: column;
+}
+
+footer.footer .contact .info {
+    color: white;
+    font-family: Poppins;
+    font-weight: 300;
+    display: flex;
+    flex-direction: column;
+}
+
+footer.footer .contact .info .entry {
+    font-size: 1vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+footer.footer .contact .info .entry ion-icon {
+    margin-right: .5rem;
+    height: 1vw;
+}
+
+footer.footer .rights {
+    text-align: center;
+    font-family: Montserrat;
+    color: gray;
+    margin-bottom: 1rem;
+    font-size: 0.896vw;
+}
+
+/* End Footer */
+
+/* Start Viewports */
+
+@media only screen and (max-width: 1250px) {
+    footer.footer .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    footer.footer .container h2 {
+        font-size: 2.5vw;
+    }
+
+    footer.footer .schedule .week .day {
+        font-size: 1.6vw;
+    }
+
+    footer.footer .about p {
+        font-size: 1.6vw;
+    }
+
+    footer.footer .contact .info .entry {
+        font-size: 1.6vw;
+    }
+    
+    footer.footer .contact .info .entry ion-icon {
+        height: 1.6vw;
+    }
+
+    footer.footer .rights {
+        font-size: 1.5vw;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    footer.footer .container > div {
+        padding: 6vw 7vw;
+    }
+    
+    footer.footer .container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    footer.footer .container h2 {
+        font-size: 4vw;
+    }
+
+    footer.footer .schedule .week .day {
+        font-size: 2.8vw;
+    }
+    
+    footer.footer .about p {
+        font-size: 2.8vw;
+    }
+
+    footer.footer .contact .info .entry {
+        font-size: 2.8vw;
+    }
+    
+    footer.footer .contact .info .entry ion-icon {
+        height: 2.8vw;
+    }
+    
+    footer.footer .rights {
+        font-size: 2.2vw;
+    }   
+}
+
+/* End Viewports */
