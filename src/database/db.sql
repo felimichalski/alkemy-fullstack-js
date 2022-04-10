@@ -7,10 +7,8 @@ USE alkemy_fullstack_js;
 CREATE TABLE clients (
   ID_CLIENT int(11) NOT NULL,
   USERNAME varchar(30) NOT NULL,
-  EMAIL varchar(30) NOT NULL,
   PASSWORD varchar(30) NOT NULL,
-  FULLNAME varchar(30) NOT NULL,
-  IS_VERIFIED tinyint(1) NOT NULL
+  FULLNAME varchar(30) NOT NULL
 );
 
 -- Configurations
