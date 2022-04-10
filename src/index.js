@@ -42,7 +42,11 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use(require('./routes/index'))
+app.use(require('./routes/index.routes.js'));
+app.use('/auth', require('./routes/auth.routes.js'));
+app.use('/*', (req, res) => {
+    res.redirect('/');
+})
 
 // Starting server
 app.listen(app.get('port'), () => {

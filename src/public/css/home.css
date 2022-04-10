@@ -1,12 +1,3 @@
-.background-image {
-    height: 100vh;
-    width: 100%;
-    background: url(../img/bg1.jpg) center no-repeat;
-    background-size: cover;
-    position: fixed;
-    z-index: -1;
-}
-
 .home-container {
     height: 100vh;
     background: transparent;
@@ -16,32 +7,30 @@
 .home-container .grid {
     display: grid;
     height: 100%;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 70% 30%;
 }
 
 .home-container .grid .welcome {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: Montserrat;
+    font-family: Merriweather Sans;
     color: white;
     padding: 0 5rem;
 }
 
-.home-container .grid .welcome h1 {
-    font-size: 5vw;
-    font-weight: 500;
-}
-
 .home-container .grid .welcome h2 {
-    font-size: 2vw;
-    font-weight: 400;
+    font-size: 3vw;
+    font-weight: 700;
+    line-height: 4rem;
+    letter-spacing: .2rem;
+    text-align: center;
 }
 
 .home-container .grid .welcome p {
     font-size: 1.5vw;
-    font-weight: 300;
-    letter-spacing: .1rem;
+    font-weight: 400;
+    line-height: 2rem;
     margin: 2rem 0;
 }
 
@@ -74,7 +63,7 @@
 }
 
 .home-container .grid .auth-links .text-links p {
-    font-size: 1.2vw;
+    font-size: 1vw;
     font-weight: 400;
     margin-bottom: 3rem;
 }
@@ -95,12 +84,27 @@
     overflow: hidden;
 }
 
-.home-container .grid .auth-links .login {
-    background-color: #5cb85c;
+.home-container .grid .auth-links .login {    
+    background-image: linear-gradient(to right, #0575E6 0%, #021B79  51%, #0575E6  100%);
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 .75rem 1.6rem -.2rem rgba(105,105,105,0.75);
+    
+}
+
+.home-container .grid .auth-links .login:hover {
+    background-position: right center;
 }
 
 .home-container .grid .auth-links .signup {
-    background-color: #0275d8;
+    background-image: linear-gradient(to right, #52c234 0%, #134700  51%, #52c234  100%);
+    transition: 0.5s;
+    background-size: 200% auto;
+    box-shadow: 0 .75rem 1.6rem -.2rem rgba(105,105,105,0.75);
+}
+
+.home-container .grid .auth-links .signup:hover {
+    background-position: right center;
 }
 
 .home-container .grid .auth-links ion-icon {
@@ -122,14 +126,9 @@
         grid-template-columns: repeat(1, 1fr);
     }
 
-    .home-container .grid > div:nth-child(1) {
-        grid-row: 2;
+    .home-container .grid > div:nth-child(2) {
         margin: 0 20vw 10vw 20vw;
         border-radius: .6rem;
-    }
-
-    .home-container .grid > div:nth-child(2) {
-        grid-row: 1;
     }
 
     .home-container .grid .welcome {
@@ -153,7 +152,7 @@
     }
     
     .home-container .grid .auth-links .text-links p {
-        font-size: 2.4vw;
+        font-size: 2vw;
     }
     
     .home-container .grid .auth-links a {

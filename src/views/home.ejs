@@ -5,25 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accountapp - Home</title>
-    <link rel="icon" href="img/logo.png" type="image/png">
+    <link rel="icon" href="img/logos/logo.png" type="image/png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700&family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;800&display=swap" rel="stylesheet">
     
     <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
 
 </head>
 <body>
+    
+    <%- include('partials/navigation'); %>
 
-    <!-- Mobile browser does not support 'background-attachment: fixed' so i make a container with position fixed -->
-    <div class="background-image"></div>
+    <%- include('partials/background'); %>
 
     <div class="home-container">
         <div class="grid">
+            <div class="welcome">
+                <h2>Manage Your Finances, Live In Peace.</h2>
+                <p>We facilitate access to your information by keeping it updated and organized, so that you can control your money in an easier way.</p>
+                <img src="/img/logos/logo.png" alt="Logo">    
+            </div>
             <div class="auth-links">
                 <div class="text-links">
                     <h2>WELCOME!</h2>
@@ -31,12 +37,6 @@
                 </div>
                 <a class='btn-auth login' href="/auth/login">I already have an account&nbsp;<ion-icon name="log-in-outline"></ion-icon></a>
                 <a class='btn-auth signup' href="/auth/signup">Sign up for free&nbsp;<ion-icon name="chevron-forward-outline"></ion-icon></a>
-            </div>
-            <div class="welcome">
-                <h1>Accountapp</h1>
-                <h2>Manage your finances, live in peace.</h2>
-                <p>We facilitate access to your information by keeping it updated and organized, so that you can control your money in an easier way.</p>
-                <img src="/img/logo.png" alt="Logo">    
             </div>
         </div>
     </div>
