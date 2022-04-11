@@ -53,7 +53,7 @@ passport.use('local.login', new LocalStrategy({
 }));
 
 passport.serializeUser((user, done) => {
-    done(null, user.ID_CLIENT)
+    done(null, user.id);
 });
 
 passport.deserializeUser(async (id, done) => {

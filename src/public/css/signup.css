@@ -87,7 +87,7 @@
 }
 
 .login-card .login-form .form-field.text-field:nth-child(3) {
-    margin: 1rem 0 2.6rem 0;
+    margin: 1rem 0 .5rem 0;
 }
 
 .login-card .login-form .form-field.text-field ion-icon {
@@ -144,19 +144,19 @@
     background-color: #37c5bc;
 }
 
-.login-card .login-form .forgot-box {
-    text-align: right;
+.login-card .login-form .validation-box {
+    text-align: left;
     width: 100%;
     max-width: 24rem;
-    margin-bottom: 1.3rem;
+    margin-bottom: 2.1rem;
 }
 
-.login-card .login-form .forgot-box .forgot {
+.login-card .login-form .validation-box .validation {
     text-decoration: none;
     font-size: .8rem;
     font-family: Merriweather Sans;
     font-weight: 300;
-    color: #337AFF;
+    color: #ca1a1a;
 }
 
 .login-card .login-form hr {
