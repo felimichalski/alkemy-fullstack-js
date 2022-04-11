@@ -5,14 +5,41 @@
     box-sizing: border-box;
 }
 
-.background-image {
-    height: 100vh;
-    width: 100vw;
-    background: url(../img/backgrounds/bg2.jpg) center no-repeat;
-    background-size: cover;
+/* Start Message */
+
+.msg-box {
     position: fixed;
-    z-index: -1;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 80vw;
+    max-width: 18rem;
+    top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(217, 83, 79, .8);
+    color: black;
+    z-index: 2000000;
 }
+
+.msg-box p {
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: .8rem;
+    padding: .5rem 1rem;
+}
+
+.msg-box .close {
+    border: none;
+    background: none;
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+
+/* End Message */
 
 /* Start Navigation */
 

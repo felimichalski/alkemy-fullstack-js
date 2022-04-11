@@ -23,6 +23,8 @@
 
     <%- include('../partials/navigation') %>
 
+    <%- include('../partials/message') %>
+
     <div class="box">
         <div class="login-card">
             <div class="login-text">
@@ -33,8 +35,8 @@
             </div>
             <form action="/auth/login" method="POST" class="login-form">
                     <div class="form-field text-field">
-                        <ion-icon name="person" id="username-icon"></ion-icon>
-                        <input type="text" name="username" placeholder="Username" id="username" autocomplete="off" required>
+                        <ion-icon name="mail" id="email-icon"></ion-icon>
+                        <input type="email" name="email" placeholder="Email" id="email" autocomplete="off" required>
                     </div>
                     <div class="form-field text-field">
                         <ion-icon name="lock-open" id="password-icon"></ion-icon>

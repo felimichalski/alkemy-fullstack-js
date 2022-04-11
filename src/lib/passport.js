@@ -6,57 +6,57 @@ const { encryptPassword, matchPassword } = require('./helpers');
 
 // System to register users and save them in database
 passport.use('local.signup', new LocalStrategy({
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
-}, async(req, username, password, done) => {
+}, async(req, email, password, done) => {
 
-    // Checking that the username doesn't exist in database
-    const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+    // Checking that the email doesn't exist in database
+    const rows = await pool.query('SELECT * FROM clients WHERE EMAIL = ?', [email]);
     if(rows.length > 0) {
-        return done(null, false, req.flash('message', 'Username is already in use'))
+        return done(null, false, req.flash('message', 'Email is already in use'))
     }
 
     const { fullname } = req.body;
 
     const newUser = {
-        username,
+        email,
         password,
         fullname
     }
 
     newUser.password = await encryptPassword(password);
 
-    const result = await pool.query('INSERT INTO users SET ?', [newUser]);
+    const result = await pool.query('INSERT INTO clients SET ?', [newUser]);
     newUser.id = result.insertId;
     return done(null, newUser);
 }));
 
 // System to verify user's credentials
 passport.use('local.login', new LocalStrategy({
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, username, password, done) => {
-    const rows = await pool.query('SELECT * FROM users WHERE username = ?', [username])
+}, async (req, email, password, done) => {
+    const rows = await pool.query('SELECT * FROM clients WHERE EMAIL = ?', [email])
     if(rows.length > 0) {
         const user = rows[0];
-        const validPassword = await matchPassword(password, user.password);
+        const validPassword = await matchPassword(password, user.PASSWORD);
         if (validPassword) {
-            done(null, user, req.flash('success', 'Successfully logged'));
+            done(null, user);
         } else {
-            done(null, false, req.flash('message', 'Incorrect password'))
+            done(null, false, req.flash('message', 'Incorrect email or password'))
         }
     } else {
-        return done(null, false, req.flash('message', 'Username does not exist'))
+        return done(null, false, req.flash('message', 'Incorrect email or password'))
     }
 }));
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user.ID_CLIENT)
 });
 
 passport.deserializeUser(async (id, done) => {
-    const rows = await pool.query('SELECT * FROM users WHERE ID = ?', [id]);
+    const rows = await pool.query('SELECT * FROM clients WHERE ID_CLIENT = ?', [id]);
     done(null, rows[0]);
 });

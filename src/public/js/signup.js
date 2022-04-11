@@ -1,3 +1,15 @@
+$('#email').focus(() => {
+    $('#email-icon').addClass('completed');
+    $('#email').parent().addClass('border-white');
+});
+
+$('#email').blur(() => {
+    if($('#email').val() === "") {
+        $('#email-icon').removeClass('completed');
+        $('#email').parent().removeClass('border-white');
+    }
+});
+
 $('#fullname').focus(() => {
     $('#fullname-icon').addClass('completed');
     $('#fullname').parent().addClass('border-white');
@@ -7,18 +19,6 @@ $('#fullname').blur(() => {
     if($('#fullname').val() === "") {
         $('#fullname-icon').removeClass('completed');
         $('#fullname').parent().removeClass('border-white');
-    }
-});
-
-$('#username').focus(() => {
-    $('#username-icon').addClass('completed');
-    $('#username').parent().addClass('border-white');
-});
-
-$('#username').blur(() => {
-    if($('#username').val() === "") {
-        $('#username-icon').removeClass('completed');
-        $('#username').parent().removeClass('border-white');
     }
 });
 

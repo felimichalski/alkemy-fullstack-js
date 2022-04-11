@@ -1,0 +1,8 @@
+<% if(message) { %>
+    <div class="msg-box">
+            <p><%- message %></p>
+            <button class='close' onclick="this.parentNode.style.display = 'none'">
+                <span>&times;</span>
+            </button>
+    </div>
+<% } %>
