@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+.box {
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 90vw;
+    max-width: 50rem;
+    border-radius: .7rem;
+    display: grid;
+    grid-template-columns: 35% 65%;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+}
+
+.login-card > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+}
+
+.login-card .login-text {
+    border-right: 1px solid white;
+}
+
+.login-card .login-text .img-logo {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    border: 1px solid #000;
+    overflow: hidden;
+    padding: 1.5rem;
+    background-color: white;
+    margin-bottom: 3rem;
+}
+
+.login-card .login-text .img-logo img {
+    height: 100%;
+    width: 100%;
+}
+
+.login-card .login-text .title {
+    font-family: Merriweather Sans;
+    font-weight: 400;
+    font-size: 2rem;
+}
+
+
+.login-card .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3rem;
+}
+
+.login-card .login-form .form-field {
+    width: 100%;
+    max-width: 24rem;
+    margin: 1rem 0;
+    padding: .4rem 0;
+    font-family: Merriweather Sans;
+}
+
+.login-card .login-form .form-field.text-field {
+    border-bottom: 2px solid gray;
+    position: relative;
+    padding: 2rem 0 .4rem 0;
+}
+
+.login-card .login-form .form-field.text-field.border-white {
+    border-bottom: 2px solid white;
+}
+
+.login-card .login-form .form-field.text-field:nth-child(3) {
+    margin: 1rem 0 2.6rem 0;
+}
+
+.login-card .login-form .form-field.text-field ion-icon {
+    font-size: 1rem;
+    transition: .2s ease-out;
+    margin-right: .5rem;
+}
+
+.login-card .login-form .form-field.text-field ion-icon.completed {
+    font-size: .8rem;
+    color: #26aca4;
+    position: absolute;
+    transform: translateY(-2rem);
+}
+
+.login-card .login-form .form-field.text-field > input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    transition: .4s ease-out;
+    font-size: 1rem;
+    width: 80%;
+}
+
+.login-card .login-form .form-field.text-field > input::placeholder {
+    opacity: .8;
+    color: white;
+}
+
+.login-card .login-form .form-field.text-field > input:focus::placeholder {
+    opacity: 0;
+    color: white;
+}
+
+.login-card .login-form button.form-field {
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: .2rem;
+    background-color: #26aca4;
+    box-shadow: 0 .75rem 1rem -.2rem rgb(48, 48, 48);
+}
+
+.login-card .login-form .forgot-box {
+    text-align: right;
+    width: 100%;
+    max-width: 24rem;
+    margin-bottom: 1.3rem;
+}
+
+.login-card .login-form .forgot-box .forgot {
+    text-decoration: none;
+    font-size: .8rem;
+    font-family: Merriweather Sans;
+    font-weight: 300;
+    color: #337AFF;
+}
+
+.login-card .login-form hr {
+    width: 100%;
+    max-width: 24rem;
+    border: .5px solid white;
+}
+
+.login-card .login-form .create {
+    text-decoration: none;
+    font-size: .8rem;
+    font-family: Merriweather Sans;
+    font-weight: 300;
+    color: #337AFF;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 686px) {
+    .login-card {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .login-card .login-text {
+        border-right: none;
+    }
+}
