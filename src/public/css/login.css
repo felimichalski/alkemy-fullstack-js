@@ -96,11 +96,24 @@
     margin-right: .5rem;
 }
 
+.login-card .login-form .form-field.text-field #password-eye {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: .5rem;
+}
+
 .login-card .login-form .form-field.text-field ion-icon.completed {
     font-size: .8rem;
     color: #26aca4;
     position: absolute;
     transform: translateY(-2rem);
+}
+
+.login-card .login-form .form-field.text-field #password-eye {
+    cursor: pointer;
+    position: absolute;
+    right: 0;
 }
 
 .login-card .login-form .form-field.text-field > input {
@@ -130,6 +143,11 @@
     border-radius: .2rem;
     background-color: #26aca4;
     box-shadow: 0 .75rem 1rem -.2rem rgb(48, 48, 48);
+    cursor: pointer;
+}
+
+.login-card .login-form button.form-field:hover {
+    background-color: #37c5bc;
 }
 
 .login-card .login-form .forgot-box {
@@ -168,5 +186,11 @@
     }
     .login-card .login-text {
         border-right: none;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .login-card .login-form {
+        padding: 0;
     }
 }

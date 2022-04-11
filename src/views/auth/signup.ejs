@@ -34,19 +34,20 @@
             <form action="/auth/login" method="POST" class="login-form">
                     <div class="form-field text-field">
                         <ion-icon name="text" id="fullname-icon"></ion-icon>
-                        <input type="text" name="fullname" placeholder="Full name" id="fullname" autocomplete="off">
+                        <input type="text" name="fullname" placeholder="Full name" id="fullname" autocomplete="off" required>
                     </div>
                     <div class="form-field text-field">
                         <ion-icon name="person" id="username-icon"></ion-icon>
-                        <input type="text" name="username" placeholder="Username" id="username" autocomplete="off">
+                        <input type="text" name="username" placeholder="Username" id="username" autocomplete="off" required>
                     </div>
                     <div class="form-field text-field">
                         <ion-icon name="lock-open" id="password-icon"></ion-icon>
-                        <input type="password" name="password" placeholder="Password" id="password" autocomplete="off">
+                        <input type="password" name="password" placeholder="Password" id="password" autocomplete="off" required>
+                        <ion-icon name="eye" id="password-eye"></ion-icon>
                     </div>
                     <button class="form-field" type="submit">ENTER</button>
                     <hr />
-                    <a class="create" href="/auth/login">Do you have an account? Enter</a>
+                    <a class="create" href="/auth/login">Do you have an account? Log in</a>
             </form>
         </div>
     </div>

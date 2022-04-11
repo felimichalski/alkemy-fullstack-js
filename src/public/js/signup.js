@@ -33,3 +33,13 @@ $('#password').blur(() => {
         $('#password').parent().removeClass('border-white');
     }
 });
+
+$('#password-eye').click(() => {
+    if($('#password-eye').siblings('input').attr('type') === 'password') {
+        $('#password-eye').siblings('input').attr('type', 'text');
+        $('#password-eye').attr('name', 'eye-off')
+    } else {
+        $('#password-eye').siblings('input').attr('type', 'password');
+        $('#password-eye').attr('name', 'eye')
+    }
+})
