@@ -50,6 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use(require('./routes/index.routes.js'));
 app.use('/auth', require('./routes/auth.routes.js'));
+app.use('/dashboard', require('./routes/dashboard.routes.js'));
 app.use('/*', (req, res) => {
     res.redirect('/');
 })
