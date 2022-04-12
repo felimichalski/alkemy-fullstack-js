@@ -38,6 +38,11 @@ app.use((req, res, next) => {
     if(app.locals.message.length < 1) {
         app.locals.message = undefined;
     }
+    
+    app.locals.success = req.flash('success');
+    if(app.locals.success.length < 1) {
+        app.locals.success = undefined;
+    }
 
     app.locals.user = req.user;
     

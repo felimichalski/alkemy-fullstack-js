@@ -17,9 +17,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(217, 83, 79, .8);
     color: black;
     z-index: 2000000;
+}
+
+.msg-box.error {
+    background-color: rgba(217, 83, 79, .8);
+}
+
+.msg-box.success {
+    background-color: rgba(92, 184, 92, .8);
 }
 
 .msg-box p {

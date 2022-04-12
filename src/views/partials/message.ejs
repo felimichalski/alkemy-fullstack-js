@@ -1,6 +1,15 @@
 <% if(message) { %>
-    <div class="msg-box">
+    <div class="msg-box error">
             <p><%- message %></p>
+            <button class='close' onclick="this.parentNode.style.display = 'none'">
+                <span>&times;</span>
+            </button>
+    </div>
+<% } %>
+
+<% if(success) { %>
+    <div class="msg-box success">
+            <p><%- success %></p>
             <button class='close' onclick="this.parentNode.style.display = 'none'">
                 <span>&times;</span>
             </button>
