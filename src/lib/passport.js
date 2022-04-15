@@ -5,6 +5,7 @@ const pool = require('../database');
 const { encryptPassword, matchPassword } = require('./helpers');
 
 const nodemailer = require('nodemailer');
+const e = require('connect-flash');
 
 let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -63,7 +64,7 @@ passport.use('local.signup', new LocalStrategy({
             </html>
             `
         });
-        return done(null, newUser);   
+        return done(null, newUser);
     } catch (err) {
         console.error(err);
         return done(null, false)
@@ -104,13 +105,76 @@ passport.use('local.verification', new LocalStrategy({
             try {
                 await pool.query('UPDATE clients SET IS_VERIFIED = 1 WHERE EMAIL = ?', [email]);
                 done(null, user, req.flash('success', 'Email verified successfully'))
-            } catch (error) {
+            } catch (err) {
                 console.error(err);
                 done(null, false, req.flash('message', 'An error has occurred. Try again later.'))
             }
         }
+    } else {
+        done(null, false, req.flash('message', 'Email not registered.'));
     }
-}))
+}));
+
+passport.use('local.recover', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'email',
+    passReqToCallback: true
+}, async(req, email, password, done) => {
+    const rows = await pool.query('SELECT * FROM clients WHERE EMAIL = ?', [email]);
+    if(rows.length > 0) {
+        const user = rows[0];
+        try {
+            await transporter.sendMail({
+                from: `"Accountapp" <${process.env.NODEMAILER_EMAIL}>`,
+                to: email,
+                subject: "Forgotten password",
+                html:  `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Forgotten password</title>
+                </head>
+                <body>
+                        <h2>Change your password.</h2>
+                        <p>If you requested a password change, please click the link below to continue.</p>
+                        <a href="http://localhost:${process.env.PORT}/auth/change?email=${email}">Change Now</a>
+                </body>
+                </html>
+                `
+            });
+            return done(null, user, req.flash('success', `We have sent a mail to ${email} to continue with your request`));
+        } catch (err) {
+            console.error(err);
+            return done(null, false, req.flash('message', 'An error has ocurred, please try again later.'))
+        }
+    } else {
+        return done(null, false, req.flash('message', "The email entered doesn't exist."))
+    }
+}));
+
+passport.use('local.change', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, async (req, email, password, done) => {
+    const rows = await pool.query('SELECT * FROM clients WHERE EMAIL = ?', [email]);
+    if(rows.length > 0) {
+        const user = rows[0];
+        try {
+            password = await encryptPassword(password);
+            await pool.query(`UPDATE clients SET PASSWORD = '${password}' WHERE EMAIL = ?`, [email]);
+            done(null, user, req.flash('success', 'Password changed successfully'))
+        } catch (err) {
+            console.error(err);
+            done(null, false, req.flash('message', 'An error has occurred. Try again later.'))
+        }
+    } else {
+        return done(null, false, req.flash('message', "The email entered doesn't exist."))
+    }
+}));
 
 passport.serializeUser((user, done) => {
     (user.id)?done(null, user.id):done(null, user.ID_CLIENT);

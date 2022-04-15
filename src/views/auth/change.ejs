@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accountapp - Log In</title>
+    <title>Accountapp - Recover</title>
     <link rel="icon" href="/img/logos/logo.png" type="image/png">
     
     <!-- Google Fonts -->
@@ -14,7 +14,7 @@
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/change.css">
 
 </head>
 <body>
@@ -29,26 +29,26 @@
         <div class="login-card">
             <div class="login-text">
                 <div class="img-logo">
-                    <img src="/img/logos/person.png" alt="Person-img">
+                    <img src="/img/logos/password.png" alt="Password-image">
                 </div>
-                <h2 class="title">LOG IN</h2>
+                <h2 class="title">RECOVER YOUR PASSWORD</h2>
             </div>
-            <form action="/auth/login" method="POST" class="login-form">
-                    <div class="form-field text-field">
-                        <ion-icon name="mail" id="email-icon"></ion-icon>
-                        <input type="email" name="email" placeholder="Email" id="email" autocomplete="off" required>
-                    </div>
-                    <div class="form-field text-field">
-                        <ion-icon name="lock-open" id="password-icon"></ion-icon>
-                        <input type="password" name="password" placeholder="Password" id="password" autocomplete="off" required>
-                        <ion-icon name="eye" id="password-eye"></ion-icon>
-                    </div>
-                    <div class="forgot-box">
-                        <a class="forgot" href="/auth/recover">Forgot password?</a>
-                    </div>
-                    <button class="form-field" type="submit">ENTER</button>
-                    <hr />
-                    <a class="change-page" href="/auth/signup">Don't you have an account? Create one</a>
+            <form action="/auth/change" method="POST" class="login-form">
+                <input type="hidden" name="email" value="<%- email %>">
+                <span class="text-info">
+                    Please enter your new password.
+                </span>
+                <div class="form-field text-field">
+                    <ion-icon name="lock-open" id="password-icon"></ion-icon>
+                    <input type="password" name="password" placeholder="Password" id="password" autocomplete="off" required>
+                    <ion-icon name="eye" id="password-eye"></ion-icon>
+                </div>
+                <div class="validation-box">
+                    <p class="validation"></p>
+                </div>
+                <button class="form-field" type="submit" id="send-form">CHANGE</button>
+                <hr />
+                <a class="change-page" href="/auth/login">Do you remember your password? Log in</a>
             </form>
         </div>
     </div>
@@ -63,7 +63,7 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     <!-- Custom Scripts -->
-    <script src="/js/login.js"></script>
+    <script src="/js/change.js"></script>
     
 </body>
 </html>
