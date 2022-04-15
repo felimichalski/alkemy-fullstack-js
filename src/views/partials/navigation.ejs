@@ -1,44 +1,28 @@
 <nav class="nav">
     <div class="nav-menu">
-        <div class="nav-brand">
-            <a href="/"><img src="/img/logos/nav-logo.png" alt="Logo"><h2>ACCOUNTAPP</h2></a>
-        </div>
         <% if(user) { %>
             <div class="toggle-collapse">
                 <div class="toggle-icons">
-                    <button class="open-sidebar-btn"><ion-icon name="menu"></ion-icon></button>
+                    <button class="expand-nav-btn"><ion-icon name="menu"></ion-icon></button>
                 </div>
             </div>
-            <div>
-                <ul class="nav-items">
-                    <li class="nav-link">
-                        <button id="btn-home">HOME</button>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-us">NOSOTROS</button>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-menu">MENU</button>
-                    </li>
-                    <li class="nav-link">
-                        <form action="/auth/logout" method="post">
-                            <button id="btn-contact">LOGOUT</button>
-                        </form>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-featured">DESTACADOS</button>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-gallery">GALERÍA</button>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-location">UBICACIÓN</button>
-                    </li>
-                    <li class="nav-link">
-                        <button id="btn-contact">CONTACTO</button>
-                    </li>
-                </ul>                
+            <ul class="nav-items">
+                <li class="nav-link">
+                    <a href="/dashboard">HOME</a>
+                </li>
+                <li class="nav-link">
+                    <a href="/dashboard/new">REGISTER</a>
+                </li>
+                <li class="nav-link">
+                    <a href="/dashboard/list">OPERATIONS</a>
+                </li>
+            </ul>                
+            <button class="user-button" id="user"><ion-icon name="person" id="User"></ion-icon>&nbsp;<%- user.FULLNAME %></button>
+        <% } else { %>
+            <div class="nav-brand">
+                <a href="/"><img src="/img/logos/nav-logo.png" alt="Logo"><h2>ACCOUNTAPP</h2></a>
             </div>
         <% } %>
     </div>
 </nav>
+<div class="nav-overlay"></div>

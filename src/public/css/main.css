@@ -5,6 +5,23 @@
     box-sizing: border-box;
 }
 
+:root {
+    --link: white;
+    --mustard: #26aca4;
+}
+
+body::-webkit-scrollbar {
+    width: .5rem;
+}
+  
+body::-webkit-scrollbar-track {
+    background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #686868;
+}
+
 /* Start Message */
 
 .msg-box {
@@ -43,24 +60,117 @@
     width: 3rem;
     cursor: pointer;
     font-size: 1.2rem;
+    color: black;
 }
 
 
 /* End Message */
 
+/* Start Modal */
+
+.modal-overlay {
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    position: fixed;
+    z-index: 200;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.modal-box .modal-card {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    background: linear-gradient(to bottom, #870000, #190a05);
+    border-radius: .7rem;
+    max-width: 20rem;
+    width: 90vw;
+    height: max-content;
+    z-index: 200;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 2rem;
+}
+
+.modal-box .modal-card .close-modal {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: white;
+}
+
+.modal-box .modal-card .img-modal {
+    height: 60vw;
+    max-height: 10rem;
+    width: 60vw;
+    max-width: 10rem;
+    border-radius: 50%;
+    padding: 2rem;
+    overflow: hidden;
+    margin: 0 auto;
+    background-color: white;
+}
+
+.modal-box .modal-card .img-modal img {
+    height: 100%;
+    width: 100%;
+}
+
+.modal-box .modal-card .user-data {
+    margin: 2rem 0;
+    font-family: Merriweather Sans;
+    color: white;
+}
+
+.modal-box .modal-card .user-data .data-item {
+    margin: 1rem 0;
+}
+
+.modal-box .modal-card .user-data .data-item span {
+    font-size: .7rem;
+}
+
+.modal-box .modal-card form {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-box .modal-card .logout button {
+    border: none;
+    padding: .5rem 1rem;
+    background-color: white;
+    border-radius: .3rem;
+    font-family: Merriweather Sans;
+    font-weight: 700;
+    cursor: pointer;
+    color: black;
+}
+
+/* End Modal */
+
 /* Start Navigation */
 
 .nav {
     background: transparent;
-    height: 7.191vw;
-    min-height: 4rem;
-    padding: 0 1rem;
+    height: max-content;
+    padding: 0 2rem;
     display: flex;
-    align-items: center;
     position: absolute;
     width: 100%;
     z-index: 100;
     overflow: hidden;
+}
+
+.nav .nav-menu {
+    margin: 1.2rem 0;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .nav .nav-menu .nav-brand a {
@@ -80,6 +190,64 @@
     font-size: 1.5vw;
     font-weight: 400;
     margin-left: .5rem;
+}
+
+.nav .nav-menu .nav-items {
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-menu .nav-items .nav-link a {
+    font-size: 1vw;
+    font-weight: 500;
+    margin: 0 2vw;
+    font-family: Montserrat;
+    color: var(--link);
+    transition: .3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-decoration: none;
+}
+
+.nav .nav-menu .nav-items .nav-link a:hover {
+    color: var(--mustard);
+}
+
+.nav .nav-menu .user-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: var(--link);
+    font-size: 1.3vw;
+    font-weight: 500;
+    font-family: Merriweather Sans;
+    display: flex;
+}
+
+.nav .toggle-collapse {
+    display: none;
+    width: 100%;
+}
+
+.nav .toggle-collapse .toggle-icons .expand-nav-btn {
+    background: transparent;
+    border: none;
+}
+
+.nav .toggle-collapse .toggle-icons .expand-nav-btn ion-icon {
+    font-size: 2.8vw;
+    color: var(--link);
+    cursor: pointer;
+}
+
+.nav-overlay {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .6);
+    display: none;
+    z-index: 80;
 }
 
 /* End Navigation */
@@ -129,37 +297,66 @@ footer.footer .rights {
 
 /* Start Viewports */
 
-@media only screen and (max-width: 1250px) {
+@media only screen and (max-width: 800px) {
+    .nav {
+        height: 3rem;
+        position: fixed;
+    }
+    
+    .nav.expand {
+        height: max-content;
+        background-color: black;
+    }
+
+    .nav .toggle-collapse {
+        display: flex;
+    }
+
+    .nav .toggle-collapse .toggle-icons .expand-nav-btn ion-icon {
+        font-size: 2.8vw;
+    }
+
+    .nav .nav-menu {
+        height: max-content;
+        flex-direction: column;
+    }
+    
+    .nav .nav-menu .nav-items {
+        margin: 1rem 0;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav .nav-menu .nav-items .nav-link {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .nav .nav-menu .nav-items .nav-link a, .nav .nav-menu .user-button {
+        font-size: 2.4vw
+    }
+
+    .nav .nav-menu .user-button {
+        position: absolute;
+        right: 2rem;
+    }
+
     footer.footer .contact {
         grid-template-columns: repeat(1, 1fr);
         margin: 1rem 0;
     }
 
     footer.footer .contact .entry {
-        font-size: 1.6vw;
         margin: 1rem 0;
+        font-size: 2vw;
     }
     
     footer.footer .contact .entry ion-icon {
-        height: 1.6vw;
-    }
-
-    footer.footer .rights {
-        font-size: 1.5vw;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    footer.footer .contact .entry {
-        font-size: 2.8vw;
-    }
-    
-    footer.footer .contact .entry ion-icon {
-        height: 2.8vw;
+        height: 2vw;
     }
     
     footer.footer .rights {
-        font-size: 2.2vw;
+        font-size: 1.7vw;
     }   
 }
 
@@ -169,6 +366,31 @@ footer.footer .rights {
         font-weight: 400;
         margin-left: .5rem;
     }
+}
+
+@media only screen and (max-width: 600px) {
+    .nav .toggle-collapse .toggle-icons .expand-nav-btn ion-icon {
+        font-size: 3.6vw;
+    }
+
+    .nav .nav-menu .nav-items .nav-link a, .nav .nav-menu .user-button {
+        font-size: 3.2vw
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    footer.footer .contact .entry {
+        font-size: 2.5vw;
+    }
+    
+    footer.footer .contact .entry ion-icon {
+        height: 2.5vw;
+    }
+    
+    footer.footer .rights {
+        font-size: 2vw;
+    }   
 }
 
 /* End Viewports */
