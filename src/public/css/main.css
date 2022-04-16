@@ -13,8 +13,12 @@
 body::-webkit-scrollbar {
     width: .5rem;
 }
-  
+
 body::-webkit-scrollbar-track {
+    background: black;
+}
+
+body::-webkit-scrollbar-track:hover {
     background: #1e1e24;
 }
 
@@ -81,7 +85,8 @@ body::-webkit-scrollbar-thumb {
     display: none;
     flex-direction: column;
     position: fixed;
-    background: linear-gradient(to bottom, #870000, #190a05);
+    background-color: #1e1e24;
+    /* background: linear-gradient(to bottom, #7f00ff, #e100ff); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: .7rem;
     max-width: 20rem;
     width: 90vw;
@@ -141,7 +146,7 @@ body::-webkit-scrollbar-thumb {
 .modal-box .modal-card .logout button {
     border: none;
     padding: .5rem 1rem;
-    background-color: white;
+    background-color: #26aca4;
     border-radius: .3rem;
     font-family: Merriweather Sans;
     font-weight: 700;
@@ -162,6 +167,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     z-index: 100;
     overflow: hidden;
+    transition: height .7s;
 }
 
 .nav .nav-menu {
@@ -245,9 +251,9 @@ body::-webkit-scrollbar-thumb {
     position: fixed;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, .6);
-    display: none;
+    visibility: hidden;
     z-index: 80;
+    transition: .7s;
 }
 
 /* End Navigation */
@@ -304,7 +310,7 @@ footer.footer .rights {
     }
     
     .nav.expand {
-        height: max-content;
+        height: 15rem;
         background-color: black;
     }
 
@@ -375,6 +381,20 @@ footer.footer .rights {
 
     .nav .nav-menu .nav-items .nav-link a, .nav .nav-menu .user-button {
         font-size: 3.2vw
+    }
+}
+
+@media only screen and (max-height: 510px) {
+    .modal-box .modal-card {
+        padding: 1rem;
+    }
+
+    .modal-box .modal-card .img-modal {
+        display: none;
+    }
+    
+    .modal-box .modal-card .user-data {
+        margin: 0 0 1rem 0;
     }
 }
 
