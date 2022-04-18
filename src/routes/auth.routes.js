@@ -1,12 +1,9 @@
 const { Router } = require('express');
 const router = Router();
 
-const pool = require('../database');
-
 const passport = require('passport');
 
 const { isLoggedIn, isNotLoggedIn } = require('../lib/protect');
-const e = require('connect-flash');
 
 router.get('/signup', isNotLoggedIn, (req, res) => {
     res.render('auth/signup')

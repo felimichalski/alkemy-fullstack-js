@@ -24,13 +24,22 @@ passport.use('local.signup', new LocalStrategy({
     passReqToCallback: true
 }, async(req, email, password, done) => {
 
+    email = email.toLowerCase();
+
     // Checking that the email doesn't exist in database
     const rows = await pool.query('SELECT * FROM clients WHERE EMAIL = ?', [email]);
     if(rows.length > 0) {
         return done(null, false, req.flash('message', 'Email is already in use'))
     }
 
-    const { fullname } = req.body;
+    let { fullname } = req.body;
+
+    fullname = fullname.split(' ');
+    for (var i = 0; i < fullname.length; i++) {
+        fullname[i] = fullname[i].charAt(0).toUpperCase() + fullname[i].slice(1).toLowerCase();
+    }
+
+    fullname = fullname.join(' ');
 
     const newUser = {
         email,

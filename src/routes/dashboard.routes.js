@@ -1,10 +1,12 @@
 const { Router } = require('express');
 const router = Router();
 
+const pool = require('../database');
+
 const { isLoggedIn } = require('../lib/protect');
 
-router.get('/', isLoggedIn, (req, res) => {
-    res.render('dashboard/main')
+router.get('/', isLoggedIn, async(req, res) => {
+    res.render('dashboard/main');
 });
 
 

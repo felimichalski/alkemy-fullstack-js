@@ -6,7 +6,8 @@ const flash = require('connect-flash');
 const passport = require('passport');
 require('dotenv').config();
 
-const { database } = require('./keys')
+const { database } = require('./keys');
+const { Cookie } = require('express-session');
 
 // Initializing
 const app = express();
@@ -16,13 +17,17 @@ require('./lib/passport');
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1); // google chrome doesn't save the session if this is not configurated
 
 // Middlewares
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore(database)
+    store: new MySQLStore(database),
+    cookie: {
+        maxAge: 14 * 24 * 60 * 60 * 1000
+    }
 }))
 app.use(flash());
 app.use(express.urlencoded({ extended: false }));
@@ -56,6 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./routes/index.routes.js'));
 app.use('/auth', require('./routes/auth.routes.js'));
 app.use('/dashboard', require('./routes/dashboard.routes.js'));
+app.use('/data', require('./routes/data.routes.js'));
 app.use('/*', (req, res) => {
     res.redirect('/');
 })

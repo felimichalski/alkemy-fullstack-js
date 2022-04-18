@@ -1,0 +1,38 @@
+.dashboard-box {
+    height: max-content;
+    width: 100vw;
+    margin-top: calc(1.3vw + 2.4rem); /*Navbar height*/
+}
+
+.dashboard-box .grid {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    color: white;
+}
+
+.dashboard-box .balances {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-box .balances .current h2 {
+
+}
+
+.dashboard-box .balances .chart-box {
+    width: 80%;
+    margin: 5rem 0;
+}
+
+.dashboard-box .operations-list {
+    padding: 2rem 2rem 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+@media only screen and (max-width: 800px) {
+    .dashboard-box .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
