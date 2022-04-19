@@ -102,9 +102,17 @@ $('document').ready(() => {
                 plugins: {
                   legend: false
                 },
+                responsive: true,
                 scales: {
                     x: {
                         type: 'time',
+                    },
+                    y: {
+                        ticks: {
+                          callback: function(value, index, values) {
+                            return "USD " + value;
+                          }
+                        }
                     }
                 }
               }

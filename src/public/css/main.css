@@ -86,7 +86,6 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
     position: fixed;
     background-color: #1e1e24;
-    /* background: linear-gradient(to bottom, #7f00ff, #e100ff); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: .7rem;
     max-width: 20rem;
     width: 90vw;
@@ -307,7 +306,6 @@ footer.footer .rights {
 @media only screen and (max-width: 800px) {
     .nav {
         height: 3rem;
-        position: fixed;
     }
     
     .nav.expand {

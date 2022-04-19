@@ -43,20 +43,23 @@
             </div>
             <div class="operations-list">
                 <h2>Last Operations</h2>
-                    <table class="operations-table" cellspacing="0" border="1">
-                        <thead>
-                            <tr class="row">
-                                <th class="header">VALUE</th>
-                                <th class="header">DATE</th>
-                                <th class="header">CATEGORY</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% for(op of operations) { %>
-                                <%- include('../partials/homelist_item', { op }) %>
-                            <% } %>
-                        </tbody>
-                    </table>
+                <table class="operations-table" cellspacing="0" border="1">
+                    <thead>
+                        <tr class="row">
+                            <th class="field">VALUE</th>
+                            <th class="field">DATE</th>
+                            <th class="field">CATEGORY</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(op of operations) { %>
+                            <%- include('../partials/homelist_item', { op }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+                <span class="list-link">
+                    <a href="/dashboard/list">See all the operations&nbsp;<ion-icon name="link-outline"></ion-icon></a>
+                </span>
             </div>
         </div>
     </div>
