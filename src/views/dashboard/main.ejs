@@ -30,8 +30,10 @@
             <div class="balances">
                 <div class="current">
                     <h2>Current Balance</h2>
-                    <div class="balance-box">
-
+                    <div class="current-box">
+                        <span class="currency">USD</span>&nbsp;
+                        <span class="current-value"></span>&nbsp;
+                        <ion-icon class="current-icon"></ion-icon>
                     </div>
                 </div>
                 <div class="chart-box">
@@ -41,6 +43,20 @@
             </div>
             <div class="operations-list">
                 <h2>Last Operations</h2>
+                    <table class="operations-table" cellspacing="0" border="1">
+                        <thead>
+                            <tr class="row">
+                                <th class="header">VALUE</th>
+                                <th class="header">DATE</th>
+                                <th class="header">CATEGORY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(op of operations) { %>
+                                <%- include('../partials/homelist_item', { op }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>

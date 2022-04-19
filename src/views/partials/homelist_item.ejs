@@ -1,0 +1,21 @@
+<tr class="row">
+    <% if(op.E_VALUE) { %>
+        <td class="field negative">
+            - <%- op.E_VALUE %>
+        </td>
+    <% } else { %>
+        <td class="field positive">
+            + <%- op.I_VALUE %>
+        </td>
+    <% } %>
+    <td class="field">
+        <%- formatDate(op.CREATED_AT) %>
+    </td>
+    <td class="field">
+        <% if(op.CATEGORY !== null) { %>
+            <%- op.CATEGORY %>
+        <% } else { %>
+            <span>-</span>
+        <% } %>
+    </td>
+</tr>

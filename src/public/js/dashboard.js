@@ -14,7 +14,7 @@ $('document').ready(() => {
 
         for (const i of result) {
             counter += 1;
-            (i.I_VALUE)?point -= i.I_VALUE:point += i.E_VALUE;
+            (i.I_VALUE)?point += i.I_VALUE:point -= i.E_VALUE;
             if(window.innerWidth > 750) {
                 if(result.length - counter < 10) {
                     data.push({ x: i.CREATED_AT, y: point});
@@ -31,6 +31,24 @@ $('document').ready(() => {
             if(result.length - counter === 0) {
                 currentBalance = point;
             }
+        }
+
+        let currentValue = document.querySelector('.current-value');
+        let currentIcon = document.querySelector('.current-icon');
+        let currentBox = document.querySelector('.current-box');
+        
+        
+        if(currentBalance > 0) {
+            currentValue.innerHTML = "+" + currentBalance;
+            currentBox.classList.add('positive');
+            currentIcon.setAttribute('name', 'caret-up');
+        } else if(currentBalance < 0) {
+            currentValue.innerHTML = currentBalance;
+            currentIcon.setAttribute('name', 'caret-down');
+            currentBox.classList.add('negative');
+        } else {
+            currentValue.innerHTML = currentBalance;
+            currentIcon.setAttribute('name', 'remove');
         }
 
         const totalDuration = data.length * 100;

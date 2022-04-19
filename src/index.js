@@ -7,7 +7,6 @@ const passport = require('passport');
 require('dotenv').config();
 
 const { database } = require('./keys');
-const { Cookie } = require('express-session');
 
 // Initializing
 const app = express();
@@ -50,6 +49,11 @@ app.use((req, res, next) => {
     }
     app.locals.email = req.body.email;
     app.locals.user = req.user;
+
+    app.locals.formatDate = (date) => {
+        date = date.toString().substring(4, 21).split(" ");
+        return date[0] + " " + date[1] + ", " + date[2] + ", " + date[3] + "hs";
+    } // helper for ejs
     
     next();
 })

@@ -6,7 +6,16 @@ const pool = require('../database');
 const { isLoggedIn } = require('../lib/protect');
 
 router.get('/', isLoggedIn, async(req, res) => {
-    res.render('dashboard/main');
+
+    const user = req.app.locals.user;
+
+    const expenses = await pool.query(`SELECT E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const income = await pool.query(`SELECT I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const result = expenses.concat(income)
+    
+    const rows = result.sort((a, b) => a.CREATED_AT - b.CREATED_AT).slice(result.length - 10); // Sorting income and expenses by date to show in a chart
+    
+    res.render('dashboard/main', {operations: rows});
 });
 
 

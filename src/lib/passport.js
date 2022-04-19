@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const pool = require('../database');
-const { encryptPassword, matchPassword } = require('./helpers');
+const { encryptPassword, matchPassword } = require('./bcrypt');
 
 const nodemailer = require('nodemailer');
 const e = require('connect-flash');
