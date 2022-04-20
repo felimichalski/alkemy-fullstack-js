@@ -4,41 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accountapp - Success</title>
-    <link rel="icon" href="/img/logos/logo.png" type="image/png">
+    <title>Accountapp - Dashboard</title>
+    <link rel="icon" href="img/logos/logo.png" type="image/png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700;800&family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
-    
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/auth/success.css">
+    <link rel="stylesheet" href="/css/list.css">
 
 </head>
 <body>
-
+    
+    <%- include('../partials/user-modal') %>
+    
     <%- include('../partials/background') %>
-
+    
     <%- include('../partials/navigation') %>
 
-    <div class="success-container">
-        <div class="success-card">
-            <div class="card-head">
-                <h2>Email Registered Successfully!</h2>
-            </div>
-            <div class="card-img">
-                <img src="/img/handshake.jpg" alt="Handshake">
-            </div>
-            <div class="card-body">
-                <p>Thank you for trust us. We have sent a message to <span><%- email %></span> in order to verify your email so you can start operating with our tools.</p>
-                <div class="back-container">
-                    <a href="/">BACK TO HOME</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table class="operations-table" cellspacing="0" border="1">
+        <thead>
+            <tr class="row">
+                <th class="field">VALUE</th>
+                <th class="field">DATE</th>
+                <th class="field">CATEGORY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(op of operations) { %>
+                <%- include('../partials/list_item', { op }) %>
+            <% } %>
+        </tbody>
+    </table>
 
     <%- include('../partials/footer') %>
 
@@ -47,6 +46,12 @@
 
     <!-- Ion Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>    
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="/js/nav.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/list.js"></script>
+    
 </body>
 </html>

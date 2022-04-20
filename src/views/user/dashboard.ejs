@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700;800&family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/user/dashboard.css">
 
 </head>
 <body>
@@ -52,7 +52,7 @@
                     </thead>
                     <tbody>
                         <% for(op of operations) { %>
-                            <%- include('../partials/homelist_item', { op }) %>
+                            <%- include('../partials/list_item', { op }) %>
                         <% } %>
                     </tbody>
                 </table>
@@ -79,7 +79,7 @@
     <!-- Custom Scripts -->
     <script src="/js/nav.js"></script>
     <script src="/js/modal.js"></script>
-    <script src="/js/dashboard.js"></script>
+    <script src="/js/user/dashboard.js"></script>
     
 </body>
 </html>
