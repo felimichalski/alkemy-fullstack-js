@@ -46,10 +46,6 @@
     margin-bottom: 5rem;
 }
 
-.dashboard-box .grid .balances .current .current-box .currency {
-    font-size: 4.5vw;
-}
-
 .dashboard-box .grid .balances .chart-box {
     width: 90%;
     margin-bottom: 2rem;
@@ -135,10 +131,6 @@
         font-size: 8vw;
         display: flex;
         justify-content: center;
-    }
-    
-    .dashboard-box .grid .balances .current .current-box .currency {
-        font-size: 7vw;
     }
 
     .dashboard-box .grid .operations-list .operations-table .row .field,

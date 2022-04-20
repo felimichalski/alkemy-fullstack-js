@@ -39,11 +39,11 @@ $('document').ready(() => {
         
         
         if(currentBalance > 0) {
-            currentValue.innerHTML = "+" + currentBalance;
+            currentValue.innerHTML = "$" + currentBalance;
             currentBox.classList.add('positive');
             currentIcon.setAttribute('name', 'caret-up');
         } else if(currentBalance < 0) {
-            currentValue.innerHTML = currentBalance;
+            currentValue.innerHTML = "-$" + currentBalance.toString().substring(1);
             currentIcon.setAttribute('name', 'caret-down');
             currentBox.classList.add('negative');
         } else {
@@ -110,7 +110,11 @@ $('document').ready(() => {
                     y: {
                         ticks: {
                           callback: function(value, index, values) {
-                            return "USD " + value;
+                              if (value < 0) {
+                                return "- $" + value.toString().substring(1);    
+                              } else {
+                                return "$" + value;    
+                              }
                           }
                         }
                     }
