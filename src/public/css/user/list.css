@@ -76,27 +76,23 @@
 .list-box .table-footer .pagination {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    font-family: Poppins;
+    font-size: 1.2vw;
 }
 
-.list-box .table-footer .pagination .pagination-item {
-    height: 2vw;
-    width: 2vw;
+.list-box .table-footer .pagination .page-select {
     display: flex;
-    align-items: center;
-    justify-content: center;
     border: none;
     background-color: transparent;
     cursor: pointer;
     color: white;
     font-family: Poppins;
     font-size: 1.2vw;
+    border-bottom: 1px solid white;
+    outline: none;
 }
 
-.list-box .table-footer .pagination .pagination-item.active {
-    pointer-events: none;
-    color: rgb(107, 107, 107);
-}
-
-.list-box .table-footer .pagination .pagination-item:hover {
-    color: rgb(107, 107, 107);
+.list-box .table-footer .pagination .page-select option {
+    color: black;
 }

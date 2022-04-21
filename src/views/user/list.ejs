@@ -24,6 +24,8 @@
     
     <%- include('../partials/navigation') %>
 
+    <%- include('../partials/message') %>
+
     <div class="list-box">
 
         <h1 class="welcome-text">Hi <%- user.FULLNAME.split(" ")[0] %>, these are all your operations.</h1>
@@ -52,17 +54,17 @@
                 <span class="list-info">Showing operation <%- last %>.</span>
             <% } %>
             <form action="/dashboard/list" method="get" class="pagination">
-                <% for(page of totalPages) { %>
-                    <% if(page == 'prev') { %>
-                        <button class="pagination-item" name="page" value="<%- parseInt(active) - 2 %>"><ion-icon name="play-back"></ion-icon></button>
-                    <% } else if(page == 'next') { %>
-                        <button class="pagination-item" name="page" value="<%- parseInt(active) + 2 %>"><ion-icon name="play-forward"></ion-icon></button>
-                    <% } else if(page == active){ %>
-                        <button class="pagination-item active" name="page" value="<%- page %>"><%- page %></button>
-                    <% } else { %>
-                        <button class="pagination-item" name="page" value="<%- page %>"><%- page %></button>
+                Page&nbsp;
+                <select name="page" class="page-select" onchange="submitForm(this)">
+                    <% for(page of totalPages) { %>
+                        <% if(page == active) { %>
+                            <option value="<%- page %>" selected><%- page %></option>
+                        <% } else { %>
+                            <option value="<%- page %>"><%- page %></option>
+                        <% } %>
                     <% } %>
-                <% } %>
+                </select>
+                &nbsp;of <%- totalPages.length %>
             </form>
         </div>
 
