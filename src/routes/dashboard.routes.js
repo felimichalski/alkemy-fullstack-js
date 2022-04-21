@@ -27,7 +27,14 @@ router.get('/list', isLoggedIn, async(req, res) => {
 
     const expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
     const income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-    const result = expenses.concat(income)
+    const result = expenses.concat(income);
+
+    let categories = [];
+    for(r of result) {
+        if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
+            categories.push(r.CATEGORY);
+        }
+    }
 
     const pages = Math.ceil(result.length / 10); // Counting number of pages every 10 items
     let page = (req.query.page) ? parseInt(req.query.page) : 1; // Checking page of the list
@@ -40,13 +47,31 @@ router.get('/list', isLoggedIn, async(req, res) => {
     for(let i = 1; i <= pages; i++) {
         totalPages.push(i); // Creating an array of pages
     }
+
+    if(totalPages.length > 3) { // Reducing number of pages to 3
+        if(page == 1) {
+            totalPages = totalPages.slice(0, 3); // Show active and next two if is the first page
+        } else if(page == totalPages.length) {
+            totalPages = totalPages.slice(totalPages.length - 3, totalPages.length); // Show active and previous two if is the last page
+        } else {
+            totalPages = totalPages.slice(page - 2, page + 1); // Show active, previuos and next
+        }
+
+        if(page - 2 > 0) {
+            totalPages.unshift('prev'); // Active has 2 previuos pages
+        }
+
+        if(page + 2 <= pages) {
+            totalPages.push('next') // Active has 2 next pages
+        }
+    }
     
     const rows = result.sort((a, b) => b.CREATED_AT - a.CREATED_AT).slice((page - 1) * 10, page * 10); // Sorting 10 income and expenses by date according the page
 
     if(rows.length > 1) { // Checking that the page has more than 1 row
-        res.render('user/list', {operations: rows, first: (page - 1) * 10 + 1, last: (page == pages)?result.length:page * 10, totalPages, active: page});
+        res.render('user/list', {operations: rows, first: (page - 1) * 10 + 1, last: (page == pages)?result.length:page * 10, totalPages, active: page, categories:(categories.length > 0)?categories:undefined});
     } else {
-        res.render('user/list', {operations: rows, first: undefined, last: (page == pages)?result.length:page * 10, totalPages, active: page});
+        res.render('user/list', {operations: rows, first: undefined, last: (page == pages)?result.length:page * 10, totalPages, active: page, categories: (categories.length > 0)?categories:undefined});
     }
 });
 

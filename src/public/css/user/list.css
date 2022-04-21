@@ -76,23 +76,60 @@
 .list-box .table-footer .pagination {
     display: flex;
     flex-direction: row;
-    align-items: center;
     font-family: Poppins;
     font-size: 1.2vw;
 }
 
-.list-box .table-footer .pagination .page-select {
+.list-box .table-footer .pagination .pagination-item {
+    height: 2vw;
+    width: 2vw;
     display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background-color: transparent;
     cursor: pointer;
     color: white;
     font-family: Poppins;
     font-size: 1.2vw;
+}
+
+.list-box .table-footer .pagination .pagination-item.active {
+    pointer-events: none;
+    color: rgb(107, 107, 107);
+}
+
+.list-box .table-footer .pagination .pagination-item:hover {
+    color: rgb(107, 107, 107);
+} 
+
+.list-box .category-filter {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    font-family: Montserrat;
+    font-size: 1.6vw;
+    font-weight: 500;
+    margin-top: 3rem;
+}
+
+.list-box .category-filter .text-info {
+    margin-right: .2rem;
+}
+
+.list-box .category-filter .category-select {
+    font-family: Montserrat;
+    font-size: 1.6vw;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
     border-bottom: 1px solid white;
+    cursor: pointer;
+    color: white;
     outline: none;
 }
 
-.list-box .table-footer .pagination .page-select option {
+.list-box .category-filter .category-select option {
     color: black;
+    font-weight: 500;
 }

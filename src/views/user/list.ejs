@@ -55,21 +55,35 @@
             <% } %>
             <form action="/dashboard/list" method="get" class="pagination">
                 Page&nbsp;
-                <select name="page" class="page-select" onchange="submitForm(this)">
-                    <% for(page of totalPages) { %>
-                        <% if(page == active) { %>
-                            <option value="<%- page %>" selected><%- page %></option>
-                        <% } else { %>
-                            <option value="<%- page %>"><%- page %></option>
-                        <% } %>
+                <% for(page of totalPages) { %>
+                    <% if(page == 'prev') { %>
+                        <button class="pagination-item" name="page" value="<%- parseInt(active) - 2 %>"><ion-icon name="play-back"></ion-icon></button>
+                    <% } else if(page == 'next') { %>
+                        <button class="pagination-item" name="page" value="<%- parseInt(active) + 2 %>"><ion-icon name="play-forward"></ion-icon></button>
+                    <% } else if(page == active){ %>
+                        <button class="pagination-item active" name="page" value="<%- page %>"><%- page %></button>
+                    <% } else { %>
+                        <button class="pagination-item" name="page" value="<%- page %>"><%- page %></button>
                     <% } %>
-                </select>
-                &nbsp;of <%- totalPages.length %>
+                <% } %>
             </form>
         </div>
 
-    </div>
+        <% if(categories) { %>
+            <div class="category-filter">
+                <span class="text-info">Filter list by</span>
+                <form method="post">
+                    <select name="category" class="category-select" onchange="filterList(this)">
+                        <option hidden selected>category</option>
+                        <% for(cat of categories) { %>
+                            <option value="<%- cat %>"><%- cat %></option>
+                        <% } %>
+                    </select>
+                </form>
+            </div>
+        <% } %>
 
+    </div>
 
     <%- include('../partials/footer') %>
 
