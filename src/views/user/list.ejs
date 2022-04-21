@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700;800&family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/list.css">
+    <link rel="stylesheet" href="/css/user/list.css">
 
 </head>
 <body>
@@ -24,20 +24,50 @@
     
     <%- include('../partials/navigation') %>
 
-    <table class="operations-table" cellspacing="0" border="1">
-        <thead>
-            <tr class="row">
-                <th class="field">VALUE</th>
-                <th class="field">DATE</th>
-                <th class="field">CATEGORY</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(op of operations) { %>
-                <%- include('../partials/list_item', { op }) %>
+    <div class="list-box">
+
+        <h1 class="welcome-text">Hi <%- user.FULLNAME.split(" ")[0] %>, these are all your operations.</h1>
+    
+        <table class="operations-table" cellspacing="0" border="1">
+            <thead>
+                <tr class="row">
+                    <th class="field">VALUE</th>
+                    <th class="field">DATE</th>
+                    <th class="field">CATEGORY</th>
+                    <th class="field text-center">MODIFY</th>
+                    <th class="field text-center">DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(op of operations) { %>
+                    <%- include('../partials/list_item', { op }) %>
+                <% } %>
+            </tbody>
+        </table>
+
+        <div class="table-footer">
+            <% if(first) { %>
+                <span class="list-info">Showing operations <%- first %>-<%- last %>.</span>
+            <% } else { %>
+                <span class="list-info">Showing operation <%- last %>.</span>
             <% } %>
-        </tbody>
-    </table>
+            <form action="/dashboard/list" method="get" class="pagination">
+                <% for(page of totalPages) { %>
+                    <% if(page == 'prev') { %>
+                        <button class="pagination-item" name="page" value="<%- parseInt(active) - 2 %>"><ion-icon name="play-back"></ion-icon></button>
+                    <% } else if(page == 'next') { %>
+                        <button class="pagination-item" name="page" value="<%- parseInt(active) + 2 %>"><ion-icon name="play-forward"></ion-icon></button>
+                    <% } else if(page == active){ %>
+                        <button class="pagination-item active" name="page" value="<%- page %>"><%- page %></button>
+                    <% } else { %>
+                        <button class="pagination-item" name="page" value="<%- page %>"><%- page %></button>
+                    <% } %>
+                <% } %>
+            </form>
+        </div>
+
+    </div>
+
 
     <%- include('../partials/footer') %>
 
@@ -51,7 +81,7 @@
     <!-- Custom Scripts -->
     <script src="/js/nav.js"></script>
     <script src="/js/modal.js"></script>
-    <script src="/js/list.js"></script>
+    <script src="/js/user/list.js"></script>
     
 </body>
 </html>

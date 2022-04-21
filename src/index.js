@@ -53,7 +53,7 @@ app.use((req, res, next) => {
     app.locals.formatDate = (date) => {
         date = date.toString().substring(4, 21).split(" ");
         return date[0] + " " + date[1] + ", " + date[2] + ", " + date[3] + "hs";
-    } // helper for ejs
+    } // helper for formatting date
     
     next();
 })

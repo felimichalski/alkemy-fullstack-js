@@ -18,12 +18,20 @@
             <span>-</span>
         <% } %>
     </td>
-    <% if(op.EDITABLE) { %>
-        <td class="field">
-            hi
+    <% if(op.ID_OPERATION) { %>
+        <td class="field text-center">
+            <form action="/dashboard/modify/<%- op.ID_OPERATION %>" method="post">
+                <button class="modify">
+                    <ion-icon name="pencil-sharp"></ion-icon>
+                </button>
+            </form>
         </td>
-        <td class="field">
-            hi
+        <td class="field text-center">
+            <form action="/dashboard/delete/<%- op.ID_OPERATION %>" method="post">
+                <button class="delete">
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </form>
         </td>
     <% } %>
 </tr>

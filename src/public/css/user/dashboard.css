@@ -9,7 +9,7 @@
 
 .dashboard-box {
     height: max-content;
-    min-height: calc(100vh - 1.3vw - 2.4rem);
+    min-height: calc(100vh - 1.3vw - 2.4rem - 2rem - 3rem);
     width: 100vw;
     margin-top: calc(1.3vw + 2.4rem + 2rem); /*Navbar height + 2rem*/;
     display: flex;
@@ -65,10 +65,6 @@
 .dashboard-box .grid .operations-list .operations-table {
     width: 80%;
     border: none;
-}
-
-.dashboard-box .grid .operations-list .operations-table thead {
-    color: white;
 }
 
 .dashboard-box .grid .operations-list .operations-table .row .field {
