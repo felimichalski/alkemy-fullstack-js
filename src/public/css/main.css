@@ -26,6 +26,10 @@ body::-webkit-scrollbar-thumb {
     background: #686868;
 }
 
+body.non-touchable {
+    pointer-events: none;
+}
+
 /* Start Message */
 
 .msg-box {
