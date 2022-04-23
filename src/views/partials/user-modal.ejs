@@ -1,22 +1,20 @@
 <div class="modal-overlay"></div>
-<div class="modal-box">
-    <div class="modal-card">
-        <ion-icon name="close-circle-outline" class="close-modal"></ion-icon>
-        <div class="img-modal">
-            <img src="/img/logos/user.png" alt="Person">
-        </div>
-        <ul class="user-data">
-            <li class="data-item">
-                <h2>Full Name</h2>
-                <span><%- user.FULLNAME %></span>
-            </li>
-            <li class="data-item">
-                <h2>Email</h2>
-                <span><%- user.EMAIL %></span>
-            </li>
-        </ul>
-        <form class="logout" action="/auth/logout" method="post">
-            <button>LOGOUT</button>
-        </form>
+<div class="modal-card">
+    <ion-icon name="close-circle-outline" class="close-modal"></ion-icon>
+    <div class="img-modal">
+        <img src="/img/logos/user.png" alt="Person">
     </div>
+    <ul class="user-data">
+        <li class="data-item">
+            <h2>Full Name</h2>
+            <span><%- user.FULLNAME %></span>
+        </li>
+        <li class="data-item">
+            <h2>Email</h2>
+            <span><%- user.EMAIL %></span>
+        </li>
+    </ul>
+    <form class="logout" action="/auth/logout" method="post">
+        <button>LOGOUT</button>
+    </form>
 </div>

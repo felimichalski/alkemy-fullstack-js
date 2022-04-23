@@ -85,7 +85,7 @@ body.non-touchable {
     background-color: rgba(0, 0, 0, .6);
 }
 
-.modal-box .modal-card {
+.modal-card {
     display: none;
     flex-direction: column;
     position: fixed;
@@ -95,13 +95,13 @@ body.non-touchable {
     width: 90vw;
     height: max-content;
     z-index: 200;
-    top: 2rem;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -50%);
     padding: 2rem;
 }
 
-.modal-box .modal-card .close-modal {
+.modal-card .close-modal {
     position: absolute;
     top: .5rem;
     right: .5rem;
@@ -110,7 +110,7 @@ body.non-touchable {
     color: white;
 }
 
-.modal-box .modal-card .img-modal {
+.modal-card .img-modal {
     height: 60vw;
     max-height: 10rem;
     width: 60vw;
@@ -122,31 +122,31 @@ body.non-touchable {
     background-color: white;
 }
 
-.modal-box .modal-card .img-modal img {
+.modal-card .img-modal img {
     height: 100%;
     width: 100%;
 }
 
-.modal-box .modal-card .user-data {
+.modal-card .user-data {
     margin: 2rem 0;
     font-family: Merriweather Sans;
     color: white;
 }
 
-.modal-box .modal-card .user-data .data-item {
+.modal-card .user-data .data-item {
     margin: 1rem 0;
 }
 
-.modal-box .modal-card .user-data .data-item span {
+.modal-card .user-data .data-item span {
     font-size: .8rem;
 }
 
-.modal-box .modal-card form {
+.modal-card form {
     display: flex;
     justify-content: center;
 }
 
-.modal-box .modal-card .logout button {
+.modal-card .logout button {
     border: none;
     padding: .5rem 1rem;
     background-color: #26aca4;
@@ -384,20 +384,6 @@ footer.footer .rights {
 
     .nav .nav-menu .nav-items .nav-link a, .nav .nav-menu .user-button {
         font-size: 3.2vw
-    }
-}
-
-@media only screen and (max-height: 510px) {
-    .modal-box .modal-card {
-        padding: 1rem;
-    }
-
-    .modal-box .modal-card .img-modal {
-        display: none;
-    }
-    
-    .modal-box .modal-card .user-data {
-        margin: 0 0 1rem 0;
     }
 }
 
