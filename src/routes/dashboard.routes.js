@@ -23,6 +23,10 @@ router.get('/', isLoggedIn, async(req, res) => {
 
 router.get('/list', isLoggedIn, async(req, res) => {
 
+    if(req.originalUrl == '/dashboard/list?filters=') { // Removing leftovers of get petitions
+        return res.redirect('/dashboard/list');
+    }
+
     // Global variables of the function
     let filters = [];
     let income = [];

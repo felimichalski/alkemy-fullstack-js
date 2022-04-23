@@ -24,6 +24,97 @@
     margin-bottom: 3rem;
 }
 
+.list-box .filter-box {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.list-box .filter-box .filter-menu {
+    position: static;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.list-box .filter-box .filter-menu .filter-text {
+    cursor: pointer;
+    font-size: 2.4vw;
+    font-family: Poppins;
+    font-weight: 600;
+    display: flex;
+    color: white;
+    align-items: center;
+}
+
+.list-box .filter-box .filter-menu .filter-text:hover {
+    color: #686868;
+}
+
+.list-box .filter-box .filter-menu .filter-dropdown {
+    position: absolute;
+    background-color: white;
+    list-style: none;
+    border-radius: .4rem;
+    min-width: 14vw;
+    display: none;
+    z-index: 2;
+}
+
+.list-box .filter-box .filter-menu .filter-dropdown .category {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    text-align: left;
+    color: black;
+    font-family: Poppins;
+    font-size: 1.2vw;
+    font-weight: 500;
+    padding: .5vw 1vw;
+}
+
+.list-box .filter-box .filter-menu .filter-dropdown .category:hover {
+    background-color: #d4d4d4;
+    font-weight: 600;
+}
+
+.list-box .filter-box .filter-menu .filter-dropdown .category:disabled {
+    background-color: #d4d4d4;
+    pointer-events: none;
+    cursor: default;
+}
+
+.list-box .filter-box .filter-menu .filter-dropdown .category:disabled:hover {
+    font-weight: 500;
+}
+
+.list-box .filter-box .selected-filters {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.list-box .filter-box .selected-filters .selected-category {
+    display: flex;
+    align-items: center;
+    font-size: 1vw;
+    font-family: Poppins;
+    font-weight: 500;
+    margin-right: 1rem;
+    border-radius: 2rem;
+    background-color: #545454;
+    border: none;
+    padding: .25vw .75vw;
+    color: white;
+    cursor: pointer;
+}
+
+.list-box .filter-box .selected-filters .selected-category ion-icon {
+    z-index: 1;
+}
+
 .list-box .operations-table {
     width: 80%;
     border: none;

@@ -19,7 +19,7 @@ $('.category').click((e) => {
     $('#categoryForm').submit(); // Submit the form with the new filter
 });
 
-$('.category-selected').click((e) => {
+$('.selected-category').click((e) => {
     let categories = $('#activeFilters').val().split(','); // Turning categories into an array
 
     categories = categories.filter(f => f != e.target.value).toString(); // Removing the clicked category and converting array back to string 
@@ -28,4 +28,13 @@ $('.category-selected').click((e) => {
     
     $('#categoryForm').submit(); // Submit the form
 
+});
+
+// Show/hide filters dropdown menu
+$('.filter-menu').mouseenter(() => {
+    $('.filter-dropdown').css('display', 'initial');
+})
+
+$('.filter-menu').mouseleave(() => {
+    $('.filter-dropdown').css('display', 'none');
 })

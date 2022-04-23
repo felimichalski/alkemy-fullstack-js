@@ -32,6 +32,10 @@
 
         <% if(categories) { %>
             <div class="filter-box">
+                <form action="/dashboard/list" method="get" id="categoryForm">
+                    <!-- Sending existing filters -->
+                    <input type="hidden" name="filters" value="<%- filters %>" id="activeFilters">
+                </form>
                 <div class="filter-menu">
                     <div class="filter-text">Category<ion-icon name="caret-down"></ion-icon></div>
                     <ul class="filter-dropdown">
@@ -41,17 +45,13 @@
                                 <% } else { %>
                                     <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
                                 <% } %>
-                            <% } %>
+                                <% } %>
                     </ul>
                 </div>
-                <form action="/dashboard/list" method="get" id="categoryForm">
-                    <!-- Sending existing filters -->
-                    <input type="hidden" name="filters" value="<%- filters %>" id="activeFilters">
-                </form>
                 <% if(filters) { %>
                     <ul class="selected-filters">
                         <% for(filt of filters) { %>
-                            <li><button class="category-selected" value="<%- filt %>"><%- filt %></button></li>
+                            <li><button class="selected-category" value="<%- filt %>"><%- filt %>&nbsp;<ion-icon name="close"></ion-icon></button></li>
                         <% } %>
                     </ul>
                 <% } %>
