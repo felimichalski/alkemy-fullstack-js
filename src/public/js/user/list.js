@@ -17,4 +17,15 @@ $('.category').click((e) => {
     }
     
     $('#categoryForm').submit(); // Submit the form with the new filter
+});
+
+$('.category-selected').click((e) => {
+    let categories = $('#activeFilters').val().split(','); // Turning categories into an array
+
+    categories = categories.filter(f => f != e.target.value).toString(); // Removing the clicked category and converting array back to string 
+
+    $('#activeFilters').val(categories); // Set filters without the clicked filter
+    
+    $('#categoryForm').submit(); // Submit the form
+
 })

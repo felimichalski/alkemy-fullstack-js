@@ -32,27 +32,29 @@
 
         <% if(categories) { %>
             <div class="filter-box">
-                <div class="filter-text">Category<ion-icon name="caret-down"></ion-icon></div>
-                <ul class="filter-dropdown">
-                        <% for(cat of categories) { %>
-                            <% if(filters && filters.includes(cat)) { %>
-                                <li><button class="category" value="<%- cat %>" disabled><%- cat %></button></li>
-                            <% } else { %>
-                                <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
+                <div class="filter-menu">
+                    <div class="filter-text">Category<ion-icon name="caret-down"></ion-icon></div>
+                    <ul class="filter-dropdown">
+                            <% for(cat of categories) { %>
+                                <% if(filters && filters.includes(cat)) { %>
+                                    <li><button class="category" value="<%- cat %>" disabled><%- cat %></button></li>
+                                <% } else { %>
+                                    <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
+                                <% } %>
                             <% } %>
-                        <% } %>
-                </ul>
+                    </ul>
+                </div>
                 <form action="/dashboard/list" method="get" id="categoryForm">
                     <!-- Sending existing filters -->
                     <input type="hidden" name="filters" value="<%- filters %>" id="activeFilters">
-                    <% if(filters) { %>
-                        <ul class="selected-filters">
-                            <% for(filt of filters) { %>
-                                <li><%- filt %></li>
-                            <% } %>
-                        </ul>
-                    <% } %>
                 </form>
+                <% if(filters) { %>
+                    <ul class="selected-filters">
+                        <% for(filt of filters) { %>
+                            <li><button class="category-selected" value="<%- filt %>"><%- filt %></button></li>
+                        <% } %>
+                    </ul>
+                <% } %>
             </div>
         <% } %>
     
