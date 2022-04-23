@@ -20,6 +20,11 @@ $('.category').click((e) => {
 });
 
 $('.selected-category').click((e) => {
+
+    if(e.target.value == undefined) {
+        e.target = e.target.parentNode
+    }
+
     let categories = $('#activeFilters').val().split(','); // Turning categories into an array
 
     categories = categories.filter(f => f != e.target.value).toString(); // Removing the clicked category and converting array back to string 
