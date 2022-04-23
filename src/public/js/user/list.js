@@ -36,10 +36,15 @@ $('.selected-category').click((e) => {
 });
 
 // Show/hide filters dropdown menu
-$('.filter-menu').mouseenter(() => {
-    $('.filter-dropdown').css('display', 'initial');
-})
 
-$('.filter-menu').mouseleave(() => {
+$('.filter-menu').mouseenter((e) => {
+    $('.filter-dropdown').css('display', 'initial');
+});
+
+$('.filter-menu').on('mouseleave', () => {
     $('.filter-dropdown').css('display', 'none');
+});
+
+$('body').click(() => {
+    $('.filter-menu').blur();
 })

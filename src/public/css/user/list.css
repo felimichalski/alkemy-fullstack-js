@@ -22,6 +22,9 @@
 .list-box .welcome-text {
     font-family: Montserrat;
     margin-bottom: 3rem;
+    text-align: center;
+    font-size: 3vw;
+    max-width: 80%;
 }
 
 .list-box .filter-box {
@@ -58,8 +61,8 @@
     list-style: none;
     border-radius: .4rem;
     min-width: 14vw;
-    display: none;
     z-index: 2;
+    display: none;
 }
 
 .list-box .filter-box .filter-menu .filter-dropdown .category {
@@ -94,6 +97,10 @@
 .list-box .filter-box .selected-filters {
     display: flex;
     margin-bottom: 1rem;
+}
+
+.list-box .filter-box .selected-filters li {
+    overflow: hidden;
 }
 
 .list-box .filter-box .selected-filters .selected-category {
@@ -193,35 +200,104 @@
 
 .list-box .table-footer .pagination .pagination-item:hover {
     color: rgb(107, 107, 107);
-} 
-
-.list-box .category-filter {
-    display: flex;
-    width: 80%;
-    justify-content: center;
-    font-family: Montserrat;
-    font-size: 1.6vw;
-    font-weight: 500;
-    margin-top: 3rem;
 }
 
-.list-box .category-filter .text-info {
-    margin-right: .2rem;
+@media only screen and (max-width: 800px) {
+    .list-box .welcome-text {
+        font-size: 1.5rem;
+    }
+
+    .list-box .filter-box .filter-menu .filter-text {
+        font-size: 1.2rem;
+    }
+    
+    .list-box .filter-box .filter-menu .filter-dropdown {
+        min-width: 7rem;
+    }
+    
+    .list-box .filter-box .filter-menu .filter-dropdown .category {
+        font-size: .6rem;
+        padding: .25rem .5rem;
+    }
+
+    .list-box .filter-box .selected-filters .selected-category {
+        font-size: .5rem;
+        padding: .125rem .375rem;
+    }
+    
+    .list-box .operations-table .row .field {
+        padding: .5rem 1rem .5rem 0;
+        font-size: .6rem;
+        margin-right: .5rem;
+    }
+
+    .list-box .operations-table .row .field:nth-child(1) {
+        white-space: nowrap;
+    }
+
+    .list-box .operations-table .row .field button {
+        font-size: .8rem;
+    }
+
+    .list-box .table-footer .list-info {
+        font-size: .6rem;
+    }
+    
+    .list-box .table-footer .pagination {
+        font-size: .6rem;
+    }
+    
+    .list-box .table-footer .pagination .pagination-item {
+        height: 1rem;
+        width: 1rem;
+        font-size: .6rem;
+    }    
 }
 
-.list-box .category-filter .category-select {
-    font-family: Montserrat;
-    font-size: 1.6vw;
-    font-weight: 500;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid white;
-    cursor: pointer;
-    color: white;
-    outline: none;
-}
+@media only screen and (max-width: 450px) {
+    .list-box .welcome-text {
+        font-size: 1.125rem;
+    }
 
-.list-box .category-filter .category-select option {
-    color: black;
-    font-weight: 500;
+    .list-box .filter-box .filter-menu .filter-text {
+        font-size: .9rem;
+    }
+    
+    .list-box .filter-box .filter-menu .filter-dropdown {
+        min-width: 5.25rem;
+    }
+    
+    .list-box .filter-box .filter-menu .filter-dropdown .category {
+        font-size: .45rem;
+        padding: .18rem .375rem;
+    }
+
+    .list-box .filter-box .selected-filters .selected-category {
+        font-size: .375rem;
+        padding: .1rem .3rem;
+    }
+    
+    .list-box .operations-table .row .field {
+        padding: .375rem .75rem .375rem 0;
+        font-size: .45rem;
+        margin-right: .375rem;
+    }
+
+    .list-box .operations-table .row .field button {
+        font-size: .6rem;
+    }
+
+    .list-box .table-footer .list-info {
+        font-size: .45rem;
+    }
+    
+    .list-box .table-footer .pagination {
+        font-size: .45rem;
+    }
+    
+    .list-box .table-footer .pagination .pagination-item {
+        height: .75rem;
+        width: .75rem;
+        font-size: .45rem;
+    }    
 }
