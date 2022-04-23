@@ -33,16 +33,16 @@
         <% if(categories) { %>
             <div class="filter-box">
                 <div class="filter-text">Category<ion-icon name="caret-down"></ion-icon></div>
-                <form action="/dashboard/list" method="get" id="categoryForm">
-                    <ul class="filter-dropdown">
-                            <% for(cat of categories) { %>
-                                <% if(filters && filters.includes(cat)) { %>
-                                    <li><button class="category" value="<%- cat %>" disabled><%- cat %></button></li>
-                                <% } else { %>
-                                    <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
-                                <% } %>
+                <ul class="filter-dropdown">
+                        <% for(cat of categories) { %>
+                            <% if(filters && filters.includes(cat)) { %>
+                                <li><button class="category" value="<%- cat %>" disabled><%- cat %></button></li>
+                            <% } else { %>
+                                <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
                             <% } %>
-                    </ul>
+                        <% } %>
+                </ul>
+                <form action="/dashboard/list" method="get" id="categoryForm">
                     <!-- Sending existing filters -->
                     <input type="hidden" name="filters" value="<%- filters %>" id="activeFilters">
                     <% if(filters) { %>

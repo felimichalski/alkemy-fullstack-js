@@ -8,10 +8,7 @@ const submitPaginationForm = (target) => {
     target.parentNode.submit();
 }
 
-$('.category').click((e) => {
-
-    e.preventDefault();
-    
+$('.category').click((e) => {   
     if ($('#activeFilters').val()) {
         $('#activeFilters').val($('#activeFilters').val() + `,${e.target.value}`); // If there are already filters set, add the new one
         console.log($('#activeFilters').val())
