@@ -16,6 +16,7 @@
     align-items: center;
     margin-bottom: 3rem;
     color: white;
+    position: relative;
 }
 
 .list-box .welcome-text {

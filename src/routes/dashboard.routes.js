@@ -23,25 +23,70 @@ router.get('/', isLoggedIn, async(req, res) => {
 
 router.get('/list', isLoggedIn, async(req, res) => {
 
+    // Global variables of the function
+    let filters = [];
+    let income = [];
+    let expenses = [];
+    let categories = [];
+    let eCategories = [];
+    let iCategories = [];
+    let filtersString = "";
     const user = req.app.locals.user;
 
-    const expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-    const income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-    const result = expenses.concat(income);
+    if(req.query.filters) {
+        req.query.filters.split(',').map((f) => {
+            if(!filters.includes(f)) {
+                filters.push(f) // Adding user filters to filters array 
+            }
+        });
+            
+        for ([index, f] of filters.entries()) { // Transforming filters array into string for use in sql query
+            if(index == filters.length - 1) {
+                filtersString += `'${f}'`
+            } else {
+                filtersString += `'${f}',`
+            }
+        }
 
-    let categories = [];
-    for(r of result) {
-        if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
-            categories.push(r.CATEGORY);
+    } else {
+        filters = null;
+    }
+
+    if(filtersString) {
+        expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
+        income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
+        eCategories = await pool.query(`SELECT CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`); // Getting the categories of the unselected rows too
+        iCategories = await pool.query(`SELECT CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`); // Getting the categories of the unselected rows too
+    } else {
+        expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+        income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    }
+    
+    const result = expenses.concat(income);
+    const resultCategories = eCategories.concat(iCategories);
+
+    if(resultCategories.length > 0) {
+        for(r of resultCategories) {
+            if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
+                categories.push(r.CATEGORY);
+            }
+        }
+    } else {
+        for(r of result) {
+            if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
+                categories.push(r.CATEGORY);
+            }
         }
     }
 
+    categories = categories.sort(); // Sorting cateogries alphabetically
+    
     const pages = Math.ceil(result.length / 10); // Counting number of pages every 10 items
     let page = (req.query.page) ? parseInt(req.query.page) : 1; // Checking page of the list
     
-    if(page > pages || page < 1) {
-        return res.redirect('/dashboard/list'); // Preventing the user from manually entering a non-existent page
-    }
+    // if(page > pages || page < 1) {
+    //     return res.redirect('/dashboard/list'); // Preventing the user from manually entering a non-existent page
+    // }
     
     let totalPages = [];
     for(let i = 1; i <= pages; i++) {
@@ -69,9 +114,25 @@ router.get('/list', isLoggedIn, async(req, res) => {
     const rows = result.sort((a, b) => b.CREATED_AT - a.CREATED_AT).slice((page - 1) * 10, page * 10); // Sorting 10 income and expenses by date according the page
 
     if(rows.length > 1) { // Checking that the page has more than 1 row
-        res.render('user/list', {operations: rows, first: (page - 1) * 10 + 1, last: (page == pages)?result.length:page * 10, totalPages, active: page, categories:(categories.length > 0)?categories:undefined});
+        res.render('user/list', {
+            operations: rows,
+            first: (page - 1) * 10 + 1,
+            last: (page == pages)?result.length:page * 10,
+            totalPages,
+            active: page,
+            categories:(categories.length > 0)?categories:undefined,
+            filters
+        });
     } else {
-        res.render('user/list', {operations: rows, first: undefined, last: (page == pages)?result.length:page * 10, totalPages, active: page, categories: (categories.length > 0)?categories:undefined});
+        res.render('user/list', {
+            operations: rows,
+            first: undefined,
+            last: (page == pages)?result.length:page * 10,
+            totalPages,
+            active: page,
+            categories: (categories.length > 0)?categories:undefined,
+            filters
+        });
     }
 });
 

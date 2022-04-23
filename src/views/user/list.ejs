@@ -29,6 +29,32 @@
     <div class="list-box">
 
         <h1 class="welcome-text">Hi <%- user.FULLNAME.split(" ")[0] %>, these are all your operations.</h1>
+
+        <% if(categories) { %>
+            <div class="filter-box">
+                <div class="filter-text">Category<ion-icon name="caret-down"></ion-icon></div>
+                <form action="/dashboard/list" method="get" id="categoryForm">
+                    <ul class="filter-dropdown">
+                            <% for(cat of categories) { %>
+                                <% if(filters && filters.includes(cat)) { %>
+                                    <li><button class="category" value="<%- cat %>" disabled><%- cat %></button></li>
+                                <% } else { %>
+                                    <li><button class="category" value="<%- cat %>"><%- cat %></button></li>
+                                <% } %>
+                            <% } %>
+                    </ul>
+                    <!-- Sending existing filters -->
+                    <input type="hidden" name="filters" value="<%- filters %>" id="activeFilters">
+                    <% if(filters) { %>
+                        <ul class="selected-filters">
+                            <% for(filt of filters) { %>
+                                <li><%- filt %></li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </form>
+            </div>
+        <% } %>
     
         <table class="operations-table" cellspacing="0" border="1">
             <thead>
@@ -54,6 +80,10 @@
                 <span class="list-info">Showing operation <%- last %>.</span>
             <% } %>
             <form action="/dashboard/list" method="get" class="pagination">
+                <!-- Sending existing filters -->
+                <% if(filters) { %>
+                        <input type="hidden" name="filters" value="<%- filters %>">
+                <% } %>
                 Page&nbsp;
                 <% for(page of totalPages) { %>
                     <% if(page == 'prev') { %>
@@ -68,20 +98,6 @@
                 <% } %>
             </form>
         </div>
-
-        <% if(categories) { %>
-            <div class="category-filter">
-                <span class="text-info">Filter list by</span>
-                <form method="post">
-                    <select name="category" class="category-select" onchange="filterList(this)">
-                        <option hidden selected>category</option>
-                        <% for(cat of categories) { %>
-                            <option value="<%- cat %>"><%- cat %></option>
-                        <% } %>
-                    </select>
-                </form>
-            </div>
-        <% } %>
 
     </div>
 
