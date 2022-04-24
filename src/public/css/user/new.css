@@ -1,0 +1,177 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
+.register-box {
+    height: max-content;
+    min-height: calc(100vh - 1.3vw - 2.4rem - 2rem - 3rem);
+    width: 100vw;
+    margin-top: calc(1.3vw + 2.4rem + 2rem); /*Navbar height + 2rem*/;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register-box h2 {
+    font-family: Montserrat;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.4rem;
+    color: white;
+}
+
+.register-box .register-form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    max-width: 50rem;
+}
+
+.register-box .register-form .grid {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    width: 100%;
+}
+
+.register-box .register-form .grid .concept-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: .9rem;
+    border-right: 1px solid white;
+    padding: 2rem;
+}
+
+.register-box .register-form .grid .concept-buttons > div {
+    margin: 2rem 0;
+    padding: .6rem 0;
+    width: 100%;
+    text-align: center;
+    border-radius: .7rem;
+    cursor: pointer;
+}
+
+.register-box .register-form .grid .concept-buttons .income {
+    background-color: rgba(35, 136, 35, .4);
+    border: 3px solid #1b691b;
+}
+
+.register-box .register-form .grid .concept-buttons .income:hover {
+    background-color: #1b691b;
+
+}
+
+.register-box .register-form .grid .concept-buttons .expenses {
+    background-color: rgba(228, 108, 95, .4);
+    border: 3px solid #894038;
+}
+
+.register-box .register-form .grid .concept-buttons .expenses:hover {
+    background-color: #894038;
+}
+
+.register-box .register-form .grid .operation-info {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.register-box .register-form .grid .operation-info .field-value {
+    width: 70%;
+    min-width: 10rem;
+    padding: .4rem 0;
+    font-family: Merriweather Sans;
+    font-size: 1.2rem;
+    position: relative;
+    padding: .4rem 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid gray;
+    color: white;
+    margin: 0 0 2rem 0;
+    transition: .4s ease-out;
+}
+
+.register-box .register-form .grid .operation-info .field-value:focus {
+    border-bottom: 2px solid white;
+}
+
+.register-box .register-form .grid .operation-info .field-value::placeholder {
+    opacity: .8;
+    color: white;
+}
+
+.register-box .register-form .grid .operation-info .field-value:focus::placeholder {
+    opacity: 0;
+}
+
+.register-box .register-form .grid .operation-info .category-select {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: white;
+    font-family: Poppins;
+    font-weight: 500;
+    font-size: 1.4rem;
+    width: 40%;
+    min-width: 7rem;
+}
+
+.register-box .register-form .grid .operation-info .category-select option {
+    color: black;
+}
+
+.register-box .register-form .grid .operation-info .new-category {
+    width: 30%;
+    min-width: 10rem;
+    padding: .4rem 0;
+    font-family: Merriweather Sans;
+    font-size: 1rem;
+    position: relative;
+    padding: .4rem 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid gray;
+    color: white;
+    margin: .5rem 0 0 0;
+    transition: .4s ease-out;
+    display: none;
+}
+
+.register-box .register-form .grid .operation-info .new-category::placeholder {
+    opacity: .8;
+    color: white;
+}
+
+.register-box .register-form .grid .operation-info .new-category:focus::placeholder {
+    opacity: 0;
+}
+
+.register-box .register-form .grid .operation-info .btn-send {
+    margin: 0 auto;
+    border: none;
+    background-color: #c2a030;
+    padding: .25rem 1rem;
+    border-radius: .4rem;
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
