@@ -162,6 +162,7 @@ router.get('/new', async(req, res) => {
 });
 
 router.post('/new', async(req, res) => {
+    
     let category = req.body.category;
     
     if(category === '') {
@@ -219,7 +220,9 @@ router.post('/new', async(req, res) => {
 });
 
 router.post('/list/delete/:id_operation', async (req, res) => {
+
     let operation = req.params.id_operation;
+    
     if(operation.charAt(0) == 'e') {
         try {
             await pool.query('DELETE FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
@@ -266,12 +269,94 @@ router.get('/list/modify/:id_operation', async(req, res) => {
     let data = [];
     
     if(operation.charAt(0) == 'e') {
-        data = await pool.query('SELECT * FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
+        try {
+            data = await pool.query('SELECT * FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
+        } catch (err) {
+            console.log(err);
+            req.flash('message', 'An error has ocurred, please try again later')
+            return res.redirect('/dashboard/list');
+        }
     } else {
-        data = await pool.query('SELECT * FROM income WHERE I_ID_OPERATION = ?', [operation.slice(1)]);
+        try {
+            data = await pool.query('SELECT * FROM income WHERE I_ID_OPERATION = ?', [operation.slice(1)]);
+        } catch (err) {
+            console.log(err)
+            req.flash('message', 'An error has ocurred, please try again later')
+            return res.redirect('/dashboard/list');
+        }
     }
 
     res.render('user/modify', {operation: data[0], categories});
+});
+
+router.post('/list/modify/:id_operation', async(req, res) => {
+
+    let operation = req.params.id_operation;
+    
+    let { amount, date, category, newCategory } = req.body;
+
+    if(category == '') {
+        if(operation.charAt(0) == 'e') {
+            try {
+                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        } else {
+            try {
+                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        }
+    } else if(category == 'other') {
+        newCategory = newCategory.split(' ');
+        for (var i = 0; i < newCategory.length; i++) {
+            newCategory[i] = newCategory[i].charAt(0).toUpperCase() + newCategory[i].slice(1).toLowerCase();
+        }
+        newCategory = newCategory.join(' '); // Formatting category names to have the first character of each word uppercase
+        if(operation.charAt(0) == 'e') {
+            try {
+                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${newCategory}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        } else {
+            try {
+                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${newCategory}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        }
+    } else {
+        if(operation.charAt(0) == 'e') {
+            try {
+                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        } else {
+            try {
+                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
+                req.flash('success', 'Operation updated successfully');
+            } catch (err) {
+                console.log(err)
+                req.flash('message', 'An error has ocurred, please try again later')
+            }
+        }
+    }
+
+    res.redirect('/dashboard/list');
 })
 
 module.exports = router;

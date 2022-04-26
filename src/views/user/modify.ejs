@@ -33,6 +33,8 @@
                 <div class="operation-info">
                     <span>AMOUNT</span>
                     <input type="number" name="amount" class="form-field" id="amount" value="<%- operation.E_VALUE %>">
+                    <span>DATE</span>
+                    <input type="date" name="date" class="form-field" id="date" value="<%- operation.CREATED_AT.toISOString().substring(0, 10) %>">
                     <% if(categories) { %>
                         <span>CATEGORY</span>
                         <select name="category" class="form-field category-select">
@@ -55,13 +57,15 @@
                 </div>
             </form>
         <% } else { %>
-            <form action="/dashboard/list/modify/e<%- operation.I_ID_OPERATION %>" method="post" class="modify-form">
+            <form action="/dashboard/list/modify/i<%- operation.I_ID_OPERATION %>" method="post" class="modify-form">
                 <div class="form-header">
                     <h2>MODIFY YOUR OPERATION</h2>
                 </div>
                 <div class="operation-info">
                     <span>AMOUNT</span>
                     <input type="number" name="amount" class="form-field" id="amount" value="<%- operation.I_VALUE %>">
+                    <span>DATE</span>
+                    <input type="date" name="date" class="form-field" id="date" value="<%- operation.CREATED_AT.toISOString().substring(0, 10) %>">
                     <% if(categories) { %>
                         <span>CATEGORY</span>
                         <select name="category" class="form-field category-select">

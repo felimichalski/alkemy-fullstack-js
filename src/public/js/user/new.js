@@ -62,7 +62,7 @@ $('.btn-send').click((e) => {
                 errors[2].bool = true;
             }
         }
-        if($('.new-category').val() == '') {
+        if($('.new-category').val().trim() == '') {
             errors[3].bool = true;
         }
     }

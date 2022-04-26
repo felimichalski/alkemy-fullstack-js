@@ -1,3 +1,12 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 .modify-box {
     height: max-content;
     min-height: calc(100vh - 1.3vw - 2.4rem - 2rem - 3rem);
@@ -11,7 +20,7 @@
 
 .modify-box .modify-form {
     width: 90vw;
-    max-width: 50rem;
+    max-width: 60rem;
     border-radius: .4rem;
     background-color: transparent;
     color: white;
@@ -49,11 +58,11 @@
     border-radius: .3rem;
     font-family: Poppins;
     font-size: 1vw;
+    outline: none;
 }
 
 .modify-box .modify-form .operation-info .form-field.category-select {
     text-overflow: ellipsis;
-    outline: none;
 }
 
 .modify-box .modify-form .operation-info .form-field.category-select option {
@@ -73,14 +82,14 @@
     justify-content: center;
     font-size: 1.3vw;
     cursor: pointer;
+    margin: .5vw 0;
 }
 
-.modify-box .modify-form .validation {
+.modify-box .modify-form .operation-info span.validation {
     color: #DC6558;
     font-family: Poppins;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 1vw;
     margin: 0 auto;
     display: none;
-    margin-top: .7vw;
 }
