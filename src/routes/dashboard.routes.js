@@ -183,45 +183,9 @@ router.get('/new', async(req, res) => {
     res.render('user/new', {categories})
 });
 
-router.post('/new', async(req, res) => {
-    let category = req.body.category;
-    
-    if(category === '') {
-        category = null;
-    } else if(category === 'other') {
-        category = req.body.newCategory;
-    }
-    
-    if(category) {
-        category = category.split(' ');
-        for (var i = 0; i < category.length; i++) {
-            category[i] = category[i].charAt(0).toUpperCase() + category[i].slice(1).toLowerCase();
-        }
-    
-        category = category.join(' ');
-    }
-
-    if(req.body.concept === 'income') {
-        try {
-            await pool.query(`INSERT INTO income (I_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
-            req.flash('success', 'Operation registered successfully');
-            res.redirect('/dashboard/list');
-        } catch (error) {
-            console.log(error)
-            req.flash('message', 'An error has ocurred, try again later.');
-            res.redirect('/dashboard/list');
-        }
-    } else {
-        try {
-            await pool.query(`INSERT INTO expenses (E_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
-            req.flash('success', 'Operation registered successfully');
-            res.redirect('/dashboard/list');
-        } catch (error) {
-            console.log(error)
-            req.flash('message', 'An error has ocurred, try again later.');
-            res.redirect('/dashboard/list');
-        }
-    }
+router.post('/new', (req, res) => {
+    console.log(req.body);
+    res.redirect('/dashboard/new');
 })
 
 module.exports = router;
