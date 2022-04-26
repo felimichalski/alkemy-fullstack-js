@@ -36,14 +36,16 @@
                 <div class="operation-info">
                     <input type="number" name="amount" placeholder="Amount" class="form-field" id="amount">
                     <% if(categories) { %>
-                        <select class="category-select" name="category">
-                            <option value="" selected hidden>Category</option>
-                            <option value="">None</option>
-                            <% for(cat of categories) { %>
-                                <option value="<%- cat %>"><%- cat %></option>
-                            <% } %>
-                            <option value="other">Other</option>
-                        </select>
+                        <div>
+                            <select name="category" class="category-select">
+                                <option value="" selected hidden>Category</option>
+                                <option value="">None</option>
+                                <% for(cat of categories) { %>
+                                    <option value="<%- cat %>"><%- cat %></option>
+                                <% } %>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
                         <input type="text" name="newCategory" class="new-category" placeholder="New category">
                     <% } else { %>
                         <input type="text" name="category" class="form-field" placeholder="Category (optional)">
@@ -63,10 +65,6 @@
     <!-- Ion Icons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
     <!-- Custom Scripts -->
     <script src="/js/nav.js"></script>

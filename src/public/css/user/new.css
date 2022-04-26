@@ -22,7 +22,7 @@ input[type=number]{
     font-family: Montserrat;
     margin-bottom: 3rem;
     text-align: center;
-    font-size: 2.4rem;
+    font-size: 3.2vw;
     color: white;
 }
 
@@ -31,30 +31,30 @@ input[type=number]{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90vw;
-    max-width: 50rem;
+    width: 70vw;
 }
 
 .register-box .register-form .grid {
+    width: 100%;
     display: grid;
     grid-template-columns: 40% 60%;
-    width: 100%;
 }
 
 .register-box .register-form .grid .concept-buttons {
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     font-family: Poppins;
     font-weight: 600;
-    font-size: .9rem;
+    font-size: 1.6vw;
     border-right: 1px solid white;
-    padding: 2rem;
+    padding: 2.7vw;
 }
 
 .register-box .register-form .grid .concept-buttons > div {
-    margin: 2rem 0;
-    padding: .6rem 0;
+    margin: 2.7vw 0;
+    padding: .8vw 0;
     width: 100%;
     text-align: center;
     border-radius: .7rem;
@@ -83,25 +83,24 @@ input[type=number]{
 .register-box .register-form .grid .operation-info {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 2.7vw;
     align-items: flex-start;
     justify-content: space-around;
 }
 
 .register-box .register-form .grid .operation-info .form-field {
     width: 70%;
-    min-width: 10rem;
-    padding: .4rem 0;
+    min-width: 18rem;
     font-family: Merriweather Sans;
-    font-size: 1.2rem;
+    font-size: 1.6vw;
     position: relative;
-    padding: .4rem 0;
+    padding: .5vw 0;
     outline: none;
     border: none;
     background-color: transparent;
     border-bottom: 2px solid gray;
     color: white;
-    margin: 0 0 2rem 0;
+    margin-bottom: 2.6vw;
     transition: .4s ease-out;
 }
 
@@ -125,30 +124,30 @@ input[type=number]{
     color: white;
     font-family: Poppins;
     font-weight: 500;
-    font-size: 1.4rem;
-    width: 40%;
-    min-width: 7rem;
+    font-size: 1.85vw;
+    width: 15vw;
+    min-width: 6rem;
+    text-overflow: ellipsis;
 }
 
 .register-box .register-form .grid .operation-info .category-select option {
     color: black;
-    font-size: 1rem;
+    font-size: 1vw;
 }
 
 .register-box .register-form .grid .operation-info .new-category {
     width: 30%;
-    min-width: 5rem;
-    padding: .4rem 0;
+    min-width: 13rem;
+    padding: .5vw 0;
     font-family: Merriweather Sans;
-    font-size: .8rem;
+    font-size: 1vw;
     position: relative;
-    padding: .4rem 0;
     outline: none;
     border: none;
     background-color: transparent;
     border-bottom: 2px solid gray;
     color: white;
-    margin: .5rem 0 0 0;
+    margin: .7vw 0 0 0;
     transition: .4s ease-out;
     display: none;
 }
@@ -170,23 +169,144 @@ input[type=number]{
     margin: 0 auto;
     border: none;
     background-color: #c2a030;
-    padding: .25rem 1rem;
+    padding: .3vw 1.3vw;
     border-radius: .4rem;
     font-family: Poppins;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.3vw;
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 2.6vw;
+    color: black;
 }
 
 .register-box .register-form .grid .operation-info .validation {
     color: #DC6558;
     font-family: Poppins;
     font-weight: 300;
-    font-size: .8rem;
+    font-size: 1vw;
     margin: 0 auto;
     display: none;
-    margin-top: .5rem;
+    margin-top: .7vw;
+}
+
+@media only screen and (max-width:1000px) {
+    .register-box h2 {
+        font-size: 2.5rem;
+        margin: 0 2rem 3rem 2rem;
+    }
+    
+    .register-box .register-form {
+        width: 80vw;
+    }
+    
+    .register-box .register-form .grid {
+        grid-template-columns: repeat(1, 1fr)
+    }
+    
+    .register-box .register-form .grid .concept-buttons {
+        font-size: 1.2rem;
+        padding: 0;
+        flex-direction: row;
+        border-right: none;
+    }
+    
+    .register-box .register-form .grid .concept-buttons > div {
+        margin: 2.3rem 0;
+        padding: .8rem 0;
+        width: 40%;
+    }
+    
+    .register-box .register-form .grid .operation-info {
+        align-items: center;
+        padding: 3rem 0;
+    }
+    
+    .register-box .register-form .grid .operation-info .form-field {
+        font-size: 1.5rem;
+        padding: .5rem 0;
+        margin-bottom: 3rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .category-select {
+        font-size: 1.5rem;
+        width: 13rem;
+        -webkit-appearance: menulist;
+    }
+    
+    .register-box .register-form .grid .operation-info .category-select option {
+        font-size: .8rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .new-category {
+        padding: .5rem 0;
+        font-size: 1rem;
+        margin: .7rem 0 0 0;
+    }
+    
+    .register-box .register-form .grid .operation-info .btn-send {
+        padding: .5rem 2rem;
+        font-size: 1.3rem;
+        margin-top: 3rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .validation {
+        font-size: 1rem;
+        margin-top: .2rem;
+    }
+}
+
+@media only screen and (max-width:400px) { /* All sizes minus a quarter of them */
+    .register-box h2 {
+        font-size: 1.875rem;
+        margin: 0 1.5rem 2.25rem 1.5rem;
+    }
+    
+    .register-box .register-form .grid .concept-buttons {
+        font-size: .9rem;
+    }
+    
+    .register-box .register-form .grid .concept-buttons > div {
+        margin: 1.725rem 0;
+        padding: .6rem 0;
+    }
+    
+    .register-box .register-form .grid .operation-info {
+        padding: 2.25rem 0;
+    }
+    
+    .register-box .register-form .grid .operation-info .form-field {
+        font-size: 1.125rem;
+        padding: .375rem 0;
+        margin-bottom: 2.25rem;
+        min-width: 100%;
+    }
+    
+    .register-box .register-form .grid .operation-info .category-select {
+        font-size: 1.125rem;
+        width: 9.75rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .category-select option {
+        font-size: .6rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .new-category {
+        padding: .375rem 0;
+        font-size: .75rem;
+        margin: .525rem 0 0 0;
+        min-width: 60%;
+    }
+    
+    .register-box .register-form .grid .operation-info .btn-send {
+        padding: .375rem 1.5rem;
+        font-size: .975rem;
+        margin-top: 2.25rem;
+    }
+    
+    .register-box .register-form .grid .operation-info .validation {
+        font-size: .75rem;
+        margin-top: .15rem;
+    }
 }

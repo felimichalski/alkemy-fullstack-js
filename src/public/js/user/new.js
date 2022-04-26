@@ -1,3 +1,18 @@
+if($('.register-box').outerHeight() < $(window).height()) {
+    $('.register-box').css('justify-content', 'center');
+} else {
+    $('.register-box').css('justify-content', 'start');
+}
+
+$(window).resize(() => {
+    if($('.register-box').outerHeight() < $(window).height()) {
+        $('.register-box').css('justify-content', 'center');
+    } else {
+        $('.register-box').css('justify-content', 'start');
+    }
+})
+
+
 $('.category-select').change((e) => {
     if(e.target.value === 'other') {
         $('.new-category').css('display', 'block');
@@ -63,4 +78,4 @@ $('.btn-send').click((e) => {
     if(valid) {
         $('.register-form').submit();
     }
-})
+});
