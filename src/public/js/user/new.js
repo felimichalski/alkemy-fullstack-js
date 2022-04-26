@@ -42,7 +42,8 @@ $('.btn-send').click((e) => {
         {code: 'You must select a type of operation', bool: false},
         {code: 'Invalid amount', bool: false},
         {code: "Category cannot contain numbers", bool: false},
-        {code: "Option 'other' cannot be empty", bool: false}
+        {code: "Option 'other' cannot be empty", bool: false},
+        {code: 'Amount cannot be 0', bool: false},
     ];
 
     let valid = true;
@@ -64,6 +65,10 @@ $('.btn-send').click((e) => {
         if($('.new-category').val() == '') {
             errors[3].bool = true;
         }
+    }
+
+    if(parseInt($('#amount').val()) == 0) {
+        errors[4].bool = true;
     }
 
     for(let i in errors) {

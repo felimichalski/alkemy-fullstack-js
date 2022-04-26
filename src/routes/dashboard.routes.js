@@ -166,18 +166,18 @@ router.get('/new', async(req, res) => {
     const eCategories = await pool.query(`SELECT CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
     const iCategories = await pool.query(`SELECT CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
 
-    const result = eCategories.concat(iCategories).sort((a, b) => a - b);
+    const result = eCategories.concat(iCategories).sort((a, b) => a - b); // Selecting all the categories and sorting alphabetically
 
     let categories = [];
 
     for(r of result) {
         if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
-            categories.push(r.CATEGORY);
+            categories.push(r.CATEGORY); // Adding non-repeating categories to categories array
         }
     }
 
     if(categories.length < 1) {
-        categories = undefined;
+        categories = undefined; // Preventing showing something if there are no categories
     }
 
     res.render('user/new', {categories})
@@ -187,7 +187,7 @@ router.post('/new', async(req, res) => {
     let category = req.body.category;
     
     if(category === '') {
-        category = null;
+        category = null; 
     } else if(category === 'other') {
         category = req.body.newCategory;
     }
@@ -197,7 +197,7 @@ router.post('/new', async(req, res) => {
         for (var i = 0; i < category.length; i++) {
             category[i] = category[i].charAt(0).toUpperCase() + category[i].slice(1).toLowerCase();
         }
-        category = category.join(' ');
+        category = category.join(' '); // Formatting category names to have the first character of each word uppercase
     }
 
     if(category) {
