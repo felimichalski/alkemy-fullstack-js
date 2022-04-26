@@ -42,23 +42,30 @@
             </div>
             <div class="operations-list">
                 <h2>Last Operations</h2>
-                <table class="operations-table" cellspacing="0" border="1">
-                    <thead>
-                        <tr class="row">
-                            <th class="field">VALUE</th>
-                            <th class="field">DATE</th>
-                            <th class="field">CATEGORY</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(op of operations) { %>
-                            <%- include('../partials/list_item', { op }) %>
-                        <% } %>
-                    </tbody>
-                </table>
-                <span class="list-link">
-                    <a href="/dashboard/list">See all the operations&nbsp;<ion-icon name="link-outline"></ion-icon></a>
-                </span>
+                <% if(operations.length > 0) { %>
+                    <table class="operations-table" cellspacing="0" border="1">
+                        <thead>
+                            <tr class="row">
+                                <th class="field">VALUE</th>
+                                <th class="field">DATE</th>
+                                <th class="field">CATEGORY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(op of operations) { %>
+                                <%- include('../partials/list_item', { op }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <span class="list-link">
+                        <a href="/dashboard/list">See all the operations&nbsp;<ion-icon name="link-outline"></ion-icon></a>
+                    </span>
+                <% } else { %>
+                    <span class="register-link">
+                        You don't have any operations registered yet.
+                        <a href="/dashboard/new">Add one&nbsp;<ion-icon name="link-outline"></ion-icon</a>
+                    </span>
+                <% } %>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@ $('.nav-overlay').click(() => {
         $('body').removeClass('non-touchable');
     }, 700)
     $('.nav').removeClass('expand');
-    $('.expand-nav-btn ion-icon').attr('name', 'close')
+    $('.expand-nav-btn ion-icon').attr('name', 'menu')
     $('.nav-overlay').css('visibility', 'hidden');
     $('.nav-overlay').css('background-color', '');
 })

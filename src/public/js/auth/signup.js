@@ -47,7 +47,6 @@ $('#password-eye').click(() => {
 // Password validation
 $('#send-form').click((e) => {
     e.preventDefault();
-    let counter = 0;
 
     let errors = [
         {code: 'Password must contain between 7 and 20 characters', bool: false},

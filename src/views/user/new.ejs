@@ -36,16 +36,14 @@
                 <div class="operation-info">
                     <input type="number" name="amount" placeholder="Amount" class="form-field" id="amount">
                     <% if(categories) { %>
-                        <div>
-                            <select name="category" class="category-select">
-                                <option value="" selected hidden>Category</option>
-                                <option value="">None</option>
-                                <% for(cat of categories) { %>
-                                    <option value="<%- cat %>"><%- cat %></option>
-                                <% } %>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
+                        <select name="category" class="category-select">
+                            <option value="" selected hidden>Category</option>
+                            <option value="">None</option>
+                            <% for(cat of categories) { %>
+                                <option value="<%- cat %>"><%- cat %></option>
+                            <% } %>
+                            <option value="other">Other</option>
+                        </select>
                         <input type="text" name="newCategory" class="new-category" placeholder="New category">
                     <% } else { %>
                         <input type="text" name="category" class="form-field" placeholder="Category (optional)">

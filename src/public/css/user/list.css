@@ -23,8 +23,22 @@
     font-family: Montserrat;
     margin-bottom: 3rem;
     text-align: center;
-    font-size: 3vw;
+    font-size: 2.6vw;
     max-width: 80%;
+}
+
+.list-box .register-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 2vw;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.list-box .register-link ion-icon {
+    transform: rotate(-45deg)
 }
 
 .list-box .filter-box {
@@ -207,6 +221,10 @@
         font-size: 1.5rem;
     }
 
+    .list-box .register-link {
+        font-size: 1.1rem;
+    }
+
     .list-box .filter-box .filter-menu .filter-text {
         font-size: 1.2rem;
     }
@@ -257,6 +275,10 @@
 @media only screen and (max-width: 450px) {
     .list-box .welcome-text {
         font-size: 1.125rem;
+    }
+
+    .list-box .register-link {
+        font-size: .8rem;
     }
 
     .list-box .filter-box .filter-menu .filter-text {

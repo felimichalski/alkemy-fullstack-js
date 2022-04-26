@@ -98,6 +98,28 @@
     transform: rotate(-45deg)
 }
 
+.dashboard-box .grid .operations-list .register-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2vw;
+    margin-top: 1rem;
+    width: 80%;
+    color: #DC6558;
+}
+
+.dashboard-box .grid .operations-list .register-link a {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.dashboard-box .grid .operations-list .register-link a ion-icon {
+    transform: rotate(-45deg)
+}
+
 @media only screen and (max-height: 870px) and (max-width: 1000px), (max-width:850px) {
     .dashboard-box {
         display: block;
@@ -131,7 +153,8 @@
     }
 
     .dashboard-box .grid .operations-list .operations-table .row .field,
-    .dashboard-box .grid .operations-list .list-link {
+    .dashboard-box .grid .operations-list .list-link,
+    .dashboard-box .grid .operations-list .register-link {
         font-size: 3vw;
     }
 }
