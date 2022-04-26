@@ -20,7 +20,7 @@ input[type=number]{
 
 .register-box h2 {
     font-family: Montserrat;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     text-align: center;
     font-size: 2.4rem;
     color: white;
@@ -66,7 +66,7 @@ input[type=number]{
     border: 3px solid #1b691b;
 }
 
-.register-box .register-form .grid .concept-buttons .income:hover {
+.register-box .register-form .grid .concept-buttons .income:hover, .register-box .register-form .grid .concept-buttons .income.active {
     background-color: #1b691b;
 
 }
@@ -76,7 +76,7 @@ input[type=number]{
     border: 3px solid #894038;
 }
 
-.register-box .register-form .grid .concept-buttons .expenses:hover {
+.register-box .register-form .grid .concept-buttons .expenses:hover, .register-box .register-form .grid .concept-buttons .expenses.active {
     background-color: #894038;
 }
 
@@ -88,7 +88,7 @@ input[type=number]{
     justify-content: space-around;
 }
 
-.register-box .register-form .grid .operation-info .field-value {
+.register-box .register-form .grid .operation-info .form-field {
     width: 70%;
     min-width: 10rem;
     padding: .4rem 0;
@@ -105,16 +105,16 @@ input[type=number]{
     transition: .4s ease-out;
 }
 
-.register-box .register-form .grid .operation-info .field-value:focus {
+.register-box .register-form .grid .operation-info .form-field:focus {
     border-bottom: 2px solid white;
 }
 
-.register-box .register-form .grid .operation-info .field-value::placeholder {
+.register-box .register-form .grid .operation-info .form-field::placeholder {
     opacity: .8;
     color: white;
 }
 
-.register-box .register-form .grid .operation-info .field-value:focus::placeholder {
+.register-box .register-form .grid .operation-info .form-field:focus::placeholder {
     opacity: 0;
 }
 
@@ -136,10 +136,10 @@ input[type=number]{
 
 .register-box .register-form .grid .operation-info .new-category {
     width: 30%;
-    min-width: 10rem;
+    min-width: 5rem;
     padding: .4rem 0;
     font-family: Merriweather Sans;
-    font-size: 1rem;
+    font-size: .8rem;
     position: relative;
     padding: .4rem 0;
     outline: none;
@@ -150,6 +150,10 @@ input[type=number]{
     margin: .5rem 0 0 0;
     transition: .4s ease-out;
     display: none;
+}
+
+.register-box .register-form .grid .operation-info .new-category.show {
+    display: block;
 }
 
 .register-box .register-form .grid .operation-info .new-category::placeholder {
@@ -174,4 +178,13 @@ input[type=number]{
     display: flex;
     align-items: center;
     margin-top: 2rem;
+}
+
+.register-box .register-form .grid .operation-info .validation {
+    color: #DC6558;
+    font-family: Poppins;
+    font-weight: 300;
+    font-size: .8rem;
+    margin: 0 auto;
+    display: none;
 }

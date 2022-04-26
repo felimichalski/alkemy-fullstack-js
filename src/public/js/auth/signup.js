@@ -60,15 +60,12 @@ $('#send-form').click((e) => {
 
     $password = $('#password').val().split('');
 
-    if($password.length >= 7 && $password.length <= 20) {
-        counter += 1;
-    } else {
+    if(!($password.length >= 7) || !($password.length <= 20)) {
         errors[0].bool = true;
     }
-    
+
     for(char of $password) {
         if(char.match(/[a-z]/)) {
-            counter += 1;
             errors[2].bool = false;
             break;
         }
@@ -77,7 +74,6 @@ $('#send-form').click((e) => {
     
     for(char of $password) {
         if(char.match(/[0-9]/)) {
-            counter += 1;
             errors[3].bool = false;
             break;
         }
@@ -86,7 +82,6 @@ $('#send-form').click((e) => {
 
     for(char of $password) {
         if(char.match(/[A-Z]/)) {
-            counter += 1;
             errors[1].bool = false;
             break;
         }

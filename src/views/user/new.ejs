@@ -29,11 +29,12 @@
         <form action="/dashboard/new" method="post" class="register-form">
             <div class="grid">
                 <div class="concept-buttons">
+                    <input type="hidden" name="concept" id="concept">
                     <div class="income">Income</div>
                     <div class="expenses">Expenses</div>
                 </div>
                 <div class="operation-info">
-                    <input type="number" placeholder="Value" class="field-value">
+                    <input type="number" placeholder="Amount" class="form-field">
                     <% if(categories) { %>
                         <select class="category-select" name="category">
                             <option value="" selected hidden>Category</option>
@@ -43,11 +44,12 @@
                             <% } %>
                             <option value="other">Other</option>
                         </select>
-                        <input type="text" name="category" class="new-category" placeholder="New category">
+                        <input type="text" name="new-category" class="new-category" placeholder="New category">
                     <% } else { %>
-                        <input type="text" name="category">
+                        <input type="text" name="category" class="form-field" placeholder="Category">
                     <% } %>
                     <button class="btn-send">SEND&nbsp;<ion-icon name="send"></ion-icon></button>
+                    <span class="validation"></span>
                 </div>
             </div>
         </form>

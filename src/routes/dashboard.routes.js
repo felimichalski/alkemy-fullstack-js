@@ -137,30 +137,6 @@ router.get('/list', isLoggedIn, async(req, res) => {
     }
 });
 
-router.get('/new', async(req, res) => {
-
-    const user = req.user;
-
-    const eCategories = await pool.query(`SELECT CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-    const iCategories = await pool.query(`SELECT CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-
-    const result = eCategories.concat(iCategories).sort((a, b) => a - b);
-
-    let categories = [];
-
-    for(r of result) {
-        if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
-            categories.push(r.CATEGORY);
-        }
-    }
-
-    if(categories.length < 1) {
-        categories = undefined;
-    }
-
-    res.render('user/new', {categories})
-})
-
 router.post('/list/delete/:id_operation', async (req, res) => {
     let operation = req.params.id_operation;
     if(operation.charAt(0) == 'e') {
@@ -183,5 +159,33 @@ router.post('/list/delete/:id_operation', async (req, res) => {
     res.redirect('/dashboard/list');
 });
 
+router.get('/new', async(req, res) => {
+
+    const user = req.user;
+
+    const eCategories = await pool.query(`SELECT CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const iCategories = await pool.query(`SELECT CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+
+    const result = eCategories.concat(iCategories).sort((a, b) => a - b);
+
+    let categories = [];
+
+    for(r of result) {
+        if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
+            categories.push(r.CATEGORY);
+        }
+    }
+
+    if(categories.length < 1) {
+        categories = undefined;
+    }
+
+    res.render('user/new', {categories})
+});
+
+router.post('/new', (req, res) => {
+    console.log(req.body);
+    res.redirect('/dashboard/new');
+})
 
 module.exports = router;
