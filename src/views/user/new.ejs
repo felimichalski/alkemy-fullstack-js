@@ -34,7 +34,7 @@
                     <div class="expenses">Expenses</div>
                 </div>
                 <div class="operation-info">
-                    <input type="number" placeholder="Amount" class="form-field">
+                    <input type="number" name="amount" placeholder="Amount" class="form-field" id="amount">
                     <% if(categories) { %>
                         <select class="category-select" name="category">
                             <option value="" selected hidden>Category</option>
@@ -44,9 +44,9 @@
                             <% } %>
                             <option value="other">Other</option>
                         </select>
-                        <input type="text" name="new-category" class="new-category" placeholder="New category">
+                        <input type="text" name="newCategory" class="new-category" placeholder="New category">
                     <% } else { %>
-                        <input type="text" name="category" class="form-field" placeholder="Category">
+                        <input type="text" name="category" class="form-field" placeholder="Category (optional)">
                     <% } %>
                     <button class="btn-send">SEND&nbsp;<ion-icon name="send"></ion-icon></button>
                     <span class="validation"></span>

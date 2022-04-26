@@ -26,6 +26,8 @@ $('.btn-send').click((e) => {
     let errors = [
         {code: 'You must select a type of operation', bool: false},
         {code: 'Invalid amount', bool: false},
+        {code: "Category cannot contain numbers", bool: false},
+        {code: "Option 'other' cannot be empty", bool: false}
     ];
 
     let valid = true;
@@ -34,9 +36,19 @@ $('.btn-send').click((e) => {
         errors[0].bool = true;
     };
 
-    if(isNaN(parseInt($('.field-value').val()))) {
-        console.log(parseInt($('.field-value').val()))
+    if(isNaN(parseInt($('#amount').val()))) {
         errors[1].bool = true;
+    }
+
+    if($('.new-category').css('display') == 'block') {
+        for(char of $('.new-category').val()) {
+            if(!isNaN(char) && char != ' ') {
+                errors[2].bool = true;
+            }
+        }
+        if($('.new-category').val() == '') {
+            errors[3].bool = true;
+        }
     }
 
     for(let i in errors) {

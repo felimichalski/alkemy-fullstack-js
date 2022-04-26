@@ -132,6 +132,7 @@ input[type=number]{
 
 .register-box .register-form .grid .operation-info .category-select option {
     color: black;
+    font-size: 1rem;
 }
 
 .register-box .register-form .grid .operation-info .new-category {
@@ -187,4 +188,5 @@ input[type=number]{
     font-size: .8rem;
     margin: 0 auto;
     display: none;
+    margin-top: .5rem;
 }
