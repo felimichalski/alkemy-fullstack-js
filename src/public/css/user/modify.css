@@ -52,13 +52,14 @@ input[type=number]{
 
 .modify-box .modify-form .operation-info .form-field {
     width: 100%;
-    border: 1px solid rgb(167, 167, 167);
     margin: .5vw 0 3vw 0;
     padding: 1vw 2vw;
     border-radius: .3rem;
     font-family: Poppins;
     font-size: 1vw;
     outline: none;
+    color: black;
+    background-color: white;
 }
 
 .modify-box .modify-form .operation-info .form-field.category-select {
@@ -92,4 +93,38 @@ input[type=number]{
     font-size: 1vw;
     margin: 0 auto;
     display: none;
+}
+
+@media only screen and (max-width: 850px) {
+    .modify-box .modify-form .form-header {
+        font-size: 1.5rem;
+        padding-top: 2rem;
+    }
+    
+    .modify-box .modify-form .operation-info {
+        padding: 2rem;
+    }
+    
+    .modify-box .modify-form .operation-info > span {
+        font-size: 1rem;
+    }
+    
+    .modify-box .modify-form .operation-info .form-field {
+        margin: .3rem 0 1.5rem 0;
+        padding: .5rem 1rem;
+        font-size: .8rem;
+    }
+    
+    .modify-box .modify-form .operation-info .form-field.category-select option {
+        font-size: .6rem;
+    }
+    
+    .modify-box .modify-form .operation-info .form-field.btn-update {
+        font-size: 1rem;
+        margin: .3rem 0;
+    }
+    
+    .modify-box .modify-form .operation-info span.validation {
+        font-size: .8rem;
+    }
 }
