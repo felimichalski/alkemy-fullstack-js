@@ -102,6 +102,7 @@ input[type=number]{
     color: white;
     margin-bottom: 2.6vw;
     transition: .4s ease-out;
+    color-scheme: dark;
 }
 
 .register-box .register-form .grid .operation-info .form-field:focus {

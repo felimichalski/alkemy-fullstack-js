@@ -30,7 +30,6 @@ $('.btn-update').click((e) => {
         {code: "Category cannot contain numbers", bool: false},
         {code: "Option 'other' cannot be empty", bool: false},
         {code: 'Amount cannot be 0', bool: false},
-        {code: 'Date cannot be empty', bool: false}
     ];
 
     let valid = true;
@@ -52,10 +51,6 @@ $('.btn-update').click((e) => {
 
     if(parseInt($('#amount').val()) == 0) {
         errors[3].bool = true;
-    }
-
-    if($('#date').val() == '') {
-        errors[4].bool = true;
     }
 
     for(let i in errors) {

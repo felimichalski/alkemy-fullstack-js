@@ -137,7 +137,7 @@ router.get('/list', isLoggedIn, async(req, res) => {
     }
 });
 
-router.get('/new', async(req, res) => {
+router.get('/new', isLoggedIn, async(req, res) => {
 
     const user = req.user;
 
@@ -161,14 +161,14 @@ router.get('/new', async(req, res) => {
     res.render('user/new', {categories})
 });
 
-router.post('/new', async(req, res) => {
+router.post('/new', isLoggedIn, async(req, res) => {
     
-    let category = req.body.category;
+    let { category, date, amount, concept, newCategory } = req.body;
     
     if(category === '') {
         category = null; 
     } else if(category === 'other') {
-        category = req.body.newCategory;
+        category = newCategory;
     }
     
     if(category) {
@@ -179,10 +179,14 @@ router.post('/new', async(req, res) => {
         category = category.join(' '); // Formatting category names to have the first character of each word uppercase
     }
 
+    if(date == '') {
+        date = undefined; // To use then in inline if statements
+    }
+
     if(category) {
-        if(req.body.concept === 'income') {
+        if(concept === 'income') {
             try {
-                await pool.query(`INSERT INTO income (I_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
+                (date)?await pool.query(`INSERT INTO income (I_VALUE, CREATED_AT, CATEGORY, ID_CLIENT) VALUES (${amount}, '${date}', '${category}', ${req.user.ID_CLIENT})`):await pool.query(`INSERT INTO income (I_VALUE, CATEGORY, ID_CLIENT) VALUES (${amount}, '${category}', ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
             } catch (error) {
                 console.log(error)
@@ -190,7 +194,7 @@ router.post('/new', async(req, res) => {
             }
         } else {
             try {
-                await pool.query(`INSERT INTO expenses (E_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
+                (date)?await pool.query(`INSERT INTO expenses (E_VALUE, CREATED_AT, CATEGORY, ID_CLIENT) VALUES (${amount}, '${date}', '${category}', ${req.user.ID_CLIENT})`):await pool.query(`INSERT INTO expenses (E_VALUE, CATEGORY, ID_CLIENT) VALUES (${amount}, '${category}', ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
             } catch (error) {
                 console.log(error)
@@ -198,9 +202,9 @@ router.post('/new', async(req, res) => {
             }
         }
     } else {
-        if(req.body.concept === 'income') {
+        if(concept === 'income') {
             try {
-                await pool.query(`INSERT INTO income (I_VALUE, ID_CLIENT) VALUES (${req.body.amount}, ${req.user.ID_CLIENT})`);
+                (date)?await pool.query(`INSERT INTO income (I_VALUE, CREATED_AT, ID_CLIENT) VALUES (${amount}, '${date}', ${req.user.ID_CLIENT})`):await pool.query(`INSERT INTO income (I_VALUE, ID_CLIENT) VALUES (${amount}, ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
             } catch (error) {
                 console.log(error)
@@ -208,7 +212,7 @@ router.post('/new', async(req, res) => {
             }
         } else {
             try {
-                await pool.query(`INSERT INTO expenses (E_VALUE, ID_CLIENT) VALUES (${req.body.amount}, ${req.user.ID_CLIENT})`);
+                (date)?await pool.query(`INSERT INTO expenses (E_VALUE, CREATED_AT, ID_CLIENT) VALUES (${amount}, '${date}', ${req.user.ID_CLIENT})`):await pool.query(`INSERT INTO expenses (E_VALUE, ID_CLIENT) VALUES (${amount}, ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
             } catch (error) {
                 console.log(error)
@@ -219,7 +223,7 @@ router.post('/new', async(req, res) => {
     res.redirect('/dashboard/list');
 });
 
-router.post('/list/delete/:id_operation', async (req, res) => {
+router.post('/list/delete/:id_operation', isLoggedIn, async (req, res) => {
 
     let operation = req.params.id_operation;
     
@@ -243,7 +247,7 @@ router.post('/list/delete/:id_operation', async (req, res) => {
     res.redirect('/dashboard/list');
 });
 
-router.get('/list/modify/:id_operation', async(req, res) => {
+router.get('/list/modify/:id_operation', isLoggedIn, async(req, res) => {
 
     const user = req.user;
 
@@ -289,16 +293,23 @@ router.get('/list/modify/:id_operation', async(req, res) => {
     res.render('user/modify', {operation: data[0], categories});
 });
 
-router.post('/list/modify/:id_operation', async(req, res) => {
+router.post('/list/modify/:id_operation', isLoggedIn, async(req, res) => {
 
     let operation = req.params.id_operation;
     
     let { amount, date, category, newCategory } = req.body;
 
-    if(category == '') {
+    if(category === '') {
+        category = null; 
+    } else if(category === 'other') {
+        category = newCategory;
+    }
+    
+
+    if(category) {
         if(operation.charAt(0) == 'e') {
             try {
-                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
+                (date)?await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE E_ID_OPERATION = ${operation.slice(1)}`):await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = default, CATEGORY = '${category}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
                 req.flash('success', 'Operation updated successfully');
             } catch (err) {
                 console.log(err)
@@ -306,30 +317,7 @@ router.post('/list/modify/:id_operation', async(req, res) => {
             }
         } else {
             try {
-                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
-                req.flash('success', 'Operation updated successfully');
-            } catch (err) {
-                console.log(err)
-                req.flash('message', 'An error has ocurred, please try again later')
-            }
-        }
-    } else if(category == 'other') {
-        newCategory = newCategory.split(' ');
-        for (var i = 0; i < newCategory.length; i++) {
-            newCategory[i] = newCategory[i].charAt(0).toUpperCase() + newCategory[i].slice(1).toLowerCase();
-        }
-        newCategory = newCategory.join(' '); // Formatting category names to have the first character of each word uppercase
-        if(operation.charAt(0) == 'e') {
-            try {
-                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${newCategory}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
-                req.flash('success', 'Operation updated successfully');
-            } catch (err) {
-                console.log(err)
-                req.flash('message', 'An error has ocurred, please try again later')
-            }
-        } else {
-            try {
-                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${newCategory}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
+                (date)?await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE I_ID_OPERATION = ${operation.slice(1)}`):await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = default, CATEGORY = '${category}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
                 req.flash('success', 'Operation updated successfully');
             } catch (err) {
                 console.log(err)
@@ -339,7 +327,7 @@ router.post('/list/modify/:id_operation', async(req, res) => {
     } else {
         if(operation.charAt(0) == 'e') {
             try {
-                await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE E_ID_OPERATION = ${operation.slice(1)}`);
+                (date)?await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = '${date}' WHERE E_ID_OPERATION = ${operation.slice(1)}`):await pool.query(`UPDATE expenses SET E_VALUE = ${amount}, CREATED_AT = default WHERE E_ID_OPERATION = ${operation.slice(1)}`);
                 req.flash('success', 'Operation updated successfully');
             } catch (err) {
                 console.log(err)
@@ -347,7 +335,7 @@ router.post('/list/modify/:id_operation', async(req, res) => {
             }
         } else {
             try {
-                await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}', CATEGORY = '${category}' WHERE I_ID_OPERATION = ${operation.slice(1)}`);
+                (date)?await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = '${date}' WHERE I_ID_OPERATION = ${operation.slice(1)}`):await pool.query(`UPDATE income SET I_VALUE = ${amount}, CREATED_AT = default WHERE I_ID_OPERATION = ${operation.slice(1)}`);
                 req.flash('success', 'Operation updated successfully');
             } catch (err) {
                 console.log(err)
