@@ -137,28 +137,6 @@ router.get('/list', isLoggedIn, async(req, res) => {
     }
 });
 
-router.post('/list/delete/:id_operation', async (req, res) => {
-    let operation = req.params.id_operation;
-    if(operation.charAt(0) == 'e') {
-        try {
-            await pool.query('DELETE FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
-            req.flash('success', 'Operation deleted successfully');
-        } catch (err) {
-            console.log(err)
-            req.flash('message', 'An error has ocurred, please try again later')
-        }
-    } else {
-        try {
-            await pool.query('DELETE FROM income WHERE I_ID_OPERATION = ?', [operation.slice(1)]);
-            req.flash('success', 'Operation deleted successfully');
-        } catch (err) {
-            console.log(err)
-            req.flash('message', 'An error has ocurred, please try again later')
-        }
-    }
-    res.redirect('/dashboard/list');
-});
-
 router.get('/new', async(req, res) => {
 
     const user = req.user;
@@ -205,21 +183,17 @@ router.post('/new', async(req, res) => {
             try {
                 await pool.query(`INSERT INTO income (I_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
-                res.redirect('/dashboard/list');
             } catch (error) {
                 console.log(error)
                 req.flash('message', 'An error has ocurred, try again later.');
-                res.redirect('/dashboard/list');
             }
         } else {
             try {
                 await pool.query(`INSERT INTO expenses (E_VALUE, CATEGORY, ID_CLIENT) VALUES (${req.body.amount}, '${category}', ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
-                res.redirect('/dashboard/list');
             } catch (error) {
                 console.log(error)
                 req.flash('message', 'An error has ocurred, try again later.');
-                res.redirect('/dashboard/list');
             }
         }
     } else {
@@ -227,25 +201,77 @@ router.post('/new', async(req, res) => {
             try {
                 await pool.query(`INSERT INTO income (I_VALUE, ID_CLIENT) VALUES (${req.body.amount}, ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
-                res.redirect('/dashboard/list');
             } catch (error) {
                 console.log(error)
                 req.flash('message', 'An error has ocurred, try again later.');
-                res.redirect('/dashboard/list');
             }
         } else {
             try {
                 await pool.query(`INSERT INTO expenses (E_VALUE, ID_CLIENT) VALUES (${req.body.amount}, ${req.user.ID_CLIENT})`);
                 req.flash('success', 'Operation registered successfully');
-                res.redirect('/dashboard/list');
             } catch (error) {
                 console.log(error)
                 req.flash('message', 'An error has ocurred, try again later.');
-                res.redirect('/dashboard/list');
             }
         }
     }
+    res.redirect('/dashboard/list');
+});
 
+router.post('/list/delete/:id_operation', async (req, res) => {
+    let operation = req.params.id_operation;
+    if(operation.charAt(0) == 'e') {
+        try {
+            await pool.query('DELETE FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
+            req.flash('success', 'Operation deleted successfully');
+        } catch (err) {
+            console.log(err)
+            req.flash('message', 'An error has ocurred, please try again later')
+        }
+    } else {
+        try {
+            await pool.query('DELETE FROM income WHERE I_ID_OPERATION = ?', [operation.slice(1)]);
+            req.flash('success', 'Operation deleted successfully');
+        } catch (err) {
+            console.log(err)
+            req.flash('message', 'An error has ocurred, please try again later')
+        }
+    }
+    res.redirect('/dashboard/list');
+});
+
+router.get('/list/modify/:id_operation', async(req, res) => {
+
+    const user = req.user;
+
+    const eCategories = await pool.query(`SELECT CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const iCategories = await pool.query(`SELECT CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+
+    let result = eCategories.concat(iCategories).sort((a, b) => a - b);
+
+    let categories = [];
+
+    for(r of result) {
+        if(r.CATEGORY && !categories.includes(r.CATEGORY)) {
+            categories.push(r.CATEGORY);
+        }
+    }
+
+    if(categories.length < 1) {
+        categories = undefined;
+    }
+
+    const operation = req.params.id_operation;
+    
+    let data = [];
+    
+    if(operation.charAt(0) == 'e') {
+        data = await pool.query('SELECT * FROM expenses WHERE E_ID_OPERATION = ?', [operation.slice(1)]);
+    } else {
+        data = await pool.query('SELECT * FROM income WHERE I_ID_OPERATION = ?', [operation.slice(1)]);
+    }
+
+    res.render('user/modify', {operation: data[0], categories});
 })
 
 module.exports = router;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accountapp - Dashboard</title>
+    <link rel="icon" href="img/logos/logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;700;800&family=Courgette&family=Oswald&family=Roboto:wght@300;500&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;500;600;800&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/user/modify.css">
+
+</head>
+<body>
+    
+    <%- include('../partials/user-modal') %>
+    
+    <%- include('../partials/background') %>
+    
+    <%- include('../partials/navigation') %>
+
+    <div class="modify-box">
+        <% if(operation.E_ID_OPERATION) { %>
+            <form action="/dashboard/list/modify/e<%- operation.E_ID_OPERATION %>" method="post" class="modify-form">
+                <div class="form-header">
+                    <h2>MODIFY YOUR OPERATION</h2>
+                </div>
+                <div class="operation-info">
+                    <span>AMOUNT</span>
+                    <input type="number" name="amount" class="form-field" id="amount" value="<%- operation.E_VALUE %>">
+                    <% if(categories) { %>
+                        <span>CATEGORY</span>
+                        <select name="category" class="form-field category-select">
+                            <option value="">None</option>
+                            <% for(cat of categories) { %>
+                                <% if(cat == operation.CATEGORY) { %>
+                                    <option value="<%- cat %>" selected><%- cat %></option>
+                                <% } else { %>
+                                    <option value="<%- cat %>"><%- cat %></option>
+                                <% } %>
+                            <% } %>
+                            <option value="other">Other</option>
+                        </select>
+                        <input type="text" name="newCategory" class="form-field new-category" placeholder="New category">
+                    <% } else { %>
+                        <input type="text" name="category" class="form-field" placeholder="Category (optional)">
+                    <% } %>
+                    <button class="btn-update form-field">UPDATE&nbsp;<ion-icon name="refresh-circle"></ion-icon></button>
+                    <span class="validation"></span>
+                </div>
+            </form>
+        <% } else { %>
+        <% } %>
+    </div>
+
+    <%- include('../partials/footer') %>
+
+    <!-- Jquery -->
+    <script src="/js/jquery-3-6-0.min.js"></script>
+
+    <!-- Ion Icons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="/js/nav.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/user/modify.js"></script>
+    
+</body>
+</html>

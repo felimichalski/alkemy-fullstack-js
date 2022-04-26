@@ -20,7 +20,7 @@
     </td>
     <% if(op.E_ID_OPERATION) { %>
         <td class="field text-center">
-            <form action="/dashboard/list/modify/e<%- op.E_ID_OPERATION %>" method="post">
+            <form action="/dashboard/list/modify/e<%- op.E_ID_OPERATION %>" method="get">
                 <button class="modify">
                     <ion-icon name="pencil-sharp"></ion-icon>
                 </button>
@@ -35,7 +35,7 @@
         </td>
     <% } else if(op.I_ID_OPERATION) { %>
         <td class="field text-center">
-            <form action="/dashboard/list/modify/i<%- op.I_ID_OPERATION %>" method="post">
+            <form action="/dashboard/list/modify/i<%- op.I_ID_OPERATION %>" method="get">
                 <button class="modify">
                     <ion-icon name="pencil-sharp"></ion-icon>
                 </button>
