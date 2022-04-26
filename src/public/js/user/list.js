@@ -4,6 +4,14 @@ if($('.list-box').outerHeight() < $(window).height()) {
     $('.list-box').css('justify-content', 'start');
 }
 
+$(window).resize(() => {
+    if($('.list-box').outerHeight() < $(window).height()) {
+        $('.list-box').css('justify-content', 'center');
+    } else {
+        $('.list-box').css('justify-content', 'start');
+    }    
+});
+
 const submitPaginationForm = (target) => {
     target.parentNode.submit();
 }

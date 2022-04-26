@@ -182,6 +182,10 @@ body.non-touchable {
     align-items: center;
 }
 
+.nav .nav-menu .nav-brand {
+    align-self: flex-start;
+}
+
 .nav .nav-menu .nav-brand a {
     display: flex;
     align-items: center;

@@ -1,3 +1,17 @@
+if($('.dashboard-box').outerHeight() < $(window).height()) {
+    $('.dashboard-box').css('justify-content', 'center');
+} else {
+    $('.dashboard-box').css('justify-content', 'start');
+}
+
+$(window).resize(() => {
+    if($('.dashboard-box').outerHeight() < $(window).height()) {
+        $('.dashboard-box').css('justify-content', 'center');
+    } else {
+        $('.dashboard-box').css('justify-content', 'start');
+    }    
+});
+
 $('document').ready(() => {
     $.ajax({
         url: "/data/operations",
