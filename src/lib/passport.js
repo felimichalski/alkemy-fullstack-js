@@ -133,6 +133,7 @@ passport.use('local.recover', new LocalStrategy({
     if(rows.length > 0) {
         const user = rows[0];
         try {
+            // The <a> tag of the mail must have href=localhost because page is been hosted in localhost, if page is on internet href must be the URL of the page
             await transporter.sendMail({
                 from: `"Accountapp" <${process.env.NODEMAILER_EMAIL}>`,
                 to: email,
