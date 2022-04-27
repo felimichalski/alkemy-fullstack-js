@@ -154,7 +154,7 @@ passport.use('local.recover', new LocalStrategy({
                 </html>
                 `
             });
-            return done(null, user, req.flash('success', `We have sent a mail to ${email} to continue with your request`));
+            return done(null, user, req.flash('success', `We have sent a mail to ${email}`));
         } catch (err) {
             console.error(err);
             return done(null, false, req.flash('message', 'An error has ocurred, please try again later.'))
