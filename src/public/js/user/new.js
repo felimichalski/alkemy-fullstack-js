@@ -47,13 +47,13 @@ $('.category-select').change((e) => {
 $('.income').click(() => {
     $('.income').addClass('active');
     $('.expenses').removeClass('active');
-    $('#concept').val('income');
+    $('#type').val('income');
 })
 
 $('.expenses').click(() => {
     $('.expenses').addClass('active');
     $('.income').removeClass('active');
-    $('#concept').val('expenses');
+    $('#type').val('expenses');
 });
 
 $('.btn-send').click((e) => {
@@ -66,11 +66,12 @@ $('.btn-send').click((e) => {
         {code: "Category cannot contain numbers", bool: false},
         {code: "Option 'other' cannot be empty", bool: false},
         {code: 'Amount cannot be 0', bool: false},
+        {code: 'Concept cannot be empty', bool: false},
     ];
 
     let valid = true;
 
-    if($('#concept').val() === '') {
+    if($('#type').val() === '') {
         errors[0].bool = true;
     };
 
@@ -91,6 +92,10 @@ $('.btn-send').click((e) => {
 
     if(parseInt($('#amount').val()) == 0) {
         errors[4].bool = true;
+    }
+
+    if($('#concept').val().trim() == '') {
+        errors[5].bool = true;
     }
 
     for(let i in errors) {

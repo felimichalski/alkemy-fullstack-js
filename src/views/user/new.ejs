@@ -28,12 +28,13 @@
         <h2>Register new operations.</h2>
         <form action="/dashboard/new" method="post" class="register-form">
             <div class="grid">
-                <div class="concept-buttons">
-                    <input type="hidden" name="concept" id="concept">
+                <div class="type-buttons">
+                    <input type="hidden" name="type" id="type">
                     <div class="income">Income</div>
                     <div class="expenses">Expenses</div>
                 </div>
                 <div class="operation-info">
+                    <input type="text" name="concept" placeholder="Concept" class="form-field" id="concept">
                     <input type="number" name="amount" placeholder="Amount" class="form-field" id="amount">
                     <input type="datetime-local" name="date" class="form-field">
 

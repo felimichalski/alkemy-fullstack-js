@@ -40,7 +40,7 @@ input[type=number]{
     grid-template-columns: 40% 60%;
 }
 
-.register-box .register-form .grid .concept-buttons {
+.register-box .register-form .grid .type-buttons {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ input[type=number]{
     padding: 2.7vw;
 }
 
-.register-box .register-form .grid .concept-buttons > div {
+.register-box .register-form .grid .type-buttons > div {
     margin: 2.7vw 0;
     padding: .8vw 0;
     width: 100%;
@@ -61,22 +61,22 @@ input[type=number]{
     cursor: pointer;
 }
 
-.register-box .register-form .grid .concept-buttons .income {
+.register-box .register-form .grid .type-buttons .income {
     background-color: rgba(35, 136, 35, .4);
     border: 3px solid #1b691b;
 }
 
-.register-box .register-form .grid .concept-buttons .income:hover, .register-box .register-form .grid .concept-buttons .income.active {
+.register-box .register-form .grid .type-buttons .income:hover, .register-box .register-form .grid .type-buttons .income.active {
     background-color: #1b691b;
 
 }
 
-.register-box .register-form .grid .concept-buttons .expenses {
+.register-box .register-form .grid .type-buttons .expenses {
     background-color: rgba(228, 108, 95, .4);
     border: 3px solid #894038;
 }
 
-.register-box .register-form .grid .concept-buttons .expenses:hover, .register-box .register-form .grid .concept-buttons .expenses.active {
+.register-box .register-form .grid .type-buttons .expenses:hover, .register-box .register-form .grid .type-buttons .expenses.active {
     background-color: #894038;
 }
 
@@ -206,14 +206,14 @@ input[type=number]{
         grid-template-columns: repeat(1, 1fr)
     }
     
-    .register-box .register-form .grid .concept-buttons {
+    .register-box .register-form .grid .type-buttons {
         font-size: 1.2rem;
         padding: 0;
         flex-direction: row;
         border-right: none;
     }
     
-    .register-box .register-form .grid .concept-buttons > div {
+    .register-box .register-form .grid .type-buttons > div {
         margin: 2.3rem 0;
         padding: .8rem 0;
         width: 40%;
@@ -264,11 +264,11 @@ input[type=number]{
         margin: 0 1.5rem 2.25rem 1.5rem;
     }
     
-    .register-box .register-form .grid .concept-buttons {
+    .register-box .register-form .grid .type-buttons {
         font-size: .9rem;
     }
     
-    .register-box .register-form .grid .concept-buttons > div {
+    .register-box .register-form .grid .type-buttons > div {
         margin: 1.725rem 0;
         padding: .6rem 0;
     }

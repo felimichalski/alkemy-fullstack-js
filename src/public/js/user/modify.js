@@ -8,6 +8,7 @@ $('document').ready(() => {
     })
     .done((result) => {
         $('#date').val(result.CREATED_AT.slice(0, -1));
+        $('#concept').val(result.CONCEPT);
         if(result.E_VALUE) { // Checking if are expenses or income
             $('#amount').val(result.E_VALUE);
         } else {
@@ -72,6 +73,7 @@ $('.btn-update').click((e) => {
         {code: "Category cannot contain numbers", bool: false},
         {code: "Option 'other' cannot be empty", bool: false},
         {code: 'Amount cannot be 0', bool: false},
+        {code: "Concept cannot be empty", bool: false},
     ];
 
     let valid = true;
@@ -93,6 +95,10 @@ $('.btn-update').click((e) => {
 
     if(parseInt($('#amount').val()) == 0) {
         errors[3].bool = true;
+    }
+
+    if($('#concept').val().trim() == '') {
+        errors[4].bool = true;
     }
 
     for(let i in errors) {

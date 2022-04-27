@@ -9,8 +9,8 @@ router.post('/operations', isLoggedIn, async(req, res) => {
 
     const user = req.user;
 
-    const expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-    const income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const expenses = await pool.query(`SELECT E_ID_OPERATION, CONCEPT, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+    const income = await pool.query(`SELECT I_ID_OPERATION, CONCEPT, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
 
     const result = expenses.concat(income);
 
@@ -40,11 +40,11 @@ router.post('/operations/filters', isLoggedIn, async(req, res) => {
             }
         }
 
-        expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
-        income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
+        expenses = await pool.query(`SELECT E_ID_OPERATION, CONCEPT, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
+        income = await pool.query(`SELECT I_ID_OPERATION, CONCEPT, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT} AND CATEGORY IN (${filtersString})`);
     } else {
-        expenses = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
-        income = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+        expenses = await pool.query(`SELECT E_ID_OPERATION, CONCEPT, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE ID_CLIENT = ${user.ID_CLIENT}`);
+        income = await pool.query(`SELECT I_ID_OPERATION, CONCEPT, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE ID_CLIENT = ${user.ID_CLIENT}`);
     }
 
     const result = expenses.concat(income);
@@ -127,9 +127,9 @@ router.post('/operations/:id', isLoggedIn, async(req, res) => {
     let result;
     
     if(operation.charAt(0) == 'e') {
-        result = await pool.query(`SELECT E_ID_OPERATION, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE E_ID_OPERATION = ${operation.slice(1)} AND ID_CLIENT = ${user.ID_CLIENT}`);
+        result = await pool.query(`SELECT E_ID_OPERATION, CONCEPT, E_VALUE, CREATED_AT, CATEGORY FROM expenses WHERE E_ID_OPERATION = ${operation.slice(1)} AND ID_CLIENT = ${user.ID_CLIENT}`);
     } else {
-        result = await pool.query(`SELECT I_ID_OPERATION, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE I_ID_OPERATION = ${operation.slice(1)} AND ID_CLIENT = ${user.ID_CLIENT}`);
+        result = await pool.query(`SELECT I_ID_OPERATION, CONCEPT, I_VALUE, CREATED_AT, CATEGORY FROM income WHERE I_ID_OPERATION = ${operation.slice(1)} AND ID_CLIENT = ${user.ID_CLIENT}`);
     }
     
     const rows = result[0];

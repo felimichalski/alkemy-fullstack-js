@@ -52,6 +52,9 @@ $('document').ready(() => {
                     if(r.E_VALUE) {
                         $('.operations-table tbody').append(`
                             <tr class="row">
+                                <td class="field">
+                                    ${r.CONCEPT}
+                                </td>
                                 <td class="field negative">
                                     - ${r.E_VALUE}
                                 </td>
@@ -80,6 +83,9 @@ $('document').ready(() => {
                     } else {
                         $('.operations-table tbody').append(`
                             <tr class="row">
+                                <td class="field">
+                                    ${r.CONCEPT}
+                                </td>
                                 <td class="field positive">
                                     + ${r.I_VALUE}
                                 </td>
