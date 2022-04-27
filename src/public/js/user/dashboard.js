@@ -192,6 +192,7 @@ $('document').ready(() => {
         } else {
             $('.register-link').css('display', 'flex');
             $('.operations-table').css('display', 'none');
+            $('.list-link').css('display', 'none');
         }
     });
 });
