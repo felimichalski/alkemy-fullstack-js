@@ -1,3 +1,25 @@
+$('document').ready(() => {
+    $.ajax({
+        url: "/data/categories",
+        dataType: 'json',
+        type: 'POST',
+    })
+    .done((categories) => {
+        if(categories.length > 0) {
+            $('.optional-category').remove();
+            for(cat of categories) {
+                $('.category-select').append(`
+                    <option value="${cat}">${cat}</option>
+                `)
+            }
+            $('.category-select').append("<option value='other'>Other</option>")
+        } else {
+            $('.category-select').remove();
+            $('.new-category').remove();
+        }
+    })
+})
+
 if($('.register-box').outerHeight() < $(window).height()) {
     $('.register-box').css('justify-content', 'center');
 } else {

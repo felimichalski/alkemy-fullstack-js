@@ -25,69 +25,29 @@
     <%- include('../partials/navigation') %>
 
     <div class="modify-box">
-        <% if(operation.E_ID_OPERATION) { %>
-            <form action="/dashboard/list/modify/e<%- operation.E_ID_OPERATION %>" method="post" class="modify-form">
-                <div class="form-header">
-                    <h2>MODIFY YOUR OPERATION</h2>
-                </div>
-                <div class="operation-info">
-                    <span>AMOUNT</span>
-                    <input type="number" name="amount" class="form-field" id="amount" value="<%- operation.E_VALUE %>">
-                    <span>DATE</span>
-                    <input type="date" name="date" class="form-field" id="date" value="<%- operation.CREATED_AT.toISOString().substring(0, 10) %>">
-                    <% if(categories) { %>
-                        <span>CATEGORY</span>
-                        <select name="category" class="form-field category-select">
-                            <option value="">None</option>
-                            <% for(cat of categories) { %>
-                                <% if(cat == operation.CATEGORY) { %>
-                                    <option value="<%- cat %>" selected><%- cat %></option>
-                                <% } else { %>
-                                    <option value="<%- cat %>"><%- cat %></option>
-                                <% } %>
-                            <% } %>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="text" name="newCategory" class="form-field new-category" placeholder="New category">
-                    <% } else { %>
-                        <input type="text" name="category" class="form-field" placeholder="Category (optional)">
-                    <% } %>
-                    <button class="btn-update form-field">UPDATE&nbsp;<ion-icon name="refresh-circle"></ion-icon></button>
-                    <span class="validation"></span>
-                </div>
-            </form>
-        <% } else { %>
-            <form action="/dashboard/list/modify/i<%- operation.I_ID_OPERATION %>" method="post" class="modify-form">
-                <div class="form-header">
-                    <h2>MODIFY YOUR OPERATION</h2>
-                </div>
-                <div class="operation-info">
-                    <span>AMOUNT</span>
-                    <input type="number" name="amount" class="form-field" id="amount" value="<%- operation.I_VALUE %>">
-                    <span>DATE</span>
-                    <input type="date" name="date" class="form-field" id="date" value="<%- operation.CREATED_AT.toISOString().substring(0, 10) %>">
-                    <% if(categories) { %>
-                        <span>CATEGORY</span>
-                        <select name="category" class="form-field category-select">
-                            <option value="">None</option>
-                            <% for(cat of categories) { %>
-                                <% if(cat == operation.CATEGORY) { %>
-                                    <option value="<%- cat %>" selected><%- cat %></option>
-                                <% } else { %>
-                                    <option value="<%- cat %>"><%- cat %></option>
-                                <% } %>
-                            <% } %>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="text" name="newCategory" class="form-field new-category" placeholder="New category">
-                    <% } else { %>
-                        <input type="text" name="category" class="form-field" placeholder="Category (optional)">
-                    <% } %>
-                    <button class="btn-update form-field">UPDATE&nbsp;<ion-icon name="refresh-circle"></ion-icon></button>
-                    <span class="validation"></span>
-                </div>
-            </form>
-        <% } %>
+        <form method="post" class="modify-form">
+            <div class="form-header">
+                <h2>MODIFY YOUR OPERATION</h2>
+            </div>
+            <div class="operation-info">
+                <span>AMOUNT</span>
+                <input type="number" name="amount" class="form-field" id="amount">
+
+                <span>DATE</span>
+                <input type="datetime-local" name="date" class="form-field" id="date">
+
+                <span class="show-category">CATEGORY</span>
+                <select name="category" class="form-field category-select show-category">
+                    <option value="">None</option>
+                </select>
+                <input type="text" name="newCategory" class="form-field new-category show-category" placeholder="New category">
+
+                <input type="text" name="category" class="form-field hide-category" placeholder="Category (optional)">
+                
+                <button class="btn-update form-field">UPDATE&nbsp;<ion-icon name="refresh-circle"></ion-icon></button>
+                <span class="validation"></span>
+            </div>
+        </form>
     </div>
 
     <%- include('../partials/footer') %>

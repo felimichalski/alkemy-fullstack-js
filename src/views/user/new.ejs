@@ -35,20 +35,16 @@
                 </div>
                 <div class="operation-info">
                     <input type="number" name="amount" placeholder="Amount" class="form-field" id="amount">
-                    <input type="date" name="date" class="form-field">
-                    <% if(categories) { %>
-                        <select name="category" class="category-select">
-                            <option value="" selected hidden>Category</option>
-                            <option value="">None</option>
-                            <% for(cat of categories) { %>
-                                <option value="<%- cat %>"><%- cat %></option>
-                            <% } %>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="text" name="newCategory" class="new-category" placeholder="New category">
-                    <% } else { %>
-                        <input type="text" name="category" class="form-field" placeholder="Category (optional)">
-                    <% } %>
+                    <input type="datetime-local" name="date" class="form-field">
+
+                    <select name="category" class="category-select">
+                        <option value="" selected hidden>Category</option>
+                        <option value="">None</option>
+                    </select>
+                    <input type="text" name="newCategory" class="new-category" placeholder="New category">
+
+                    <input type="text" name="category" class="form-field optional-category" placeholder="Category (optional)">
+
                     <button class="btn-send">SEND&nbsp;<ion-icon name="send"></ion-icon></button>
                     <span class="validation"></span>
                 </div>

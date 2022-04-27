@@ -19,7 +19,8 @@ $('document').ready(() => {
         type: 'POST',
     })
     .done((result) => {
-        
+
+        // Chart fill system
         let currentBalance = 0;
         
         let data = [];
@@ -135,5 +136,56 @@ $('document').ready(() => {
                 }
               }
         });
+
+        // Showing last 10 operations
+        if(result.length > 0) {
+            $('.operations-table').css('display', '');
+            $('.register-link').css('display', 'none');
+            let reversedResult = result;
+            let counter = 0;
+            for(r of reversedResult.reverse()) {
+                if(counter > 9) {
+                    break;
+                }
+                let date = r.CREATED_AT;
+                date = new Date(date).toString().substring(4, 15).split(' ');
+                date = date[0] + " " + date[1] + ", " + date[2];
+                let category = '';
+                (r.CATEGORY)?category = r.CATEGORY:category = '-';
+                if(r.E_VALUE) {
+                    $('.operations-table tbody').append(`
+                        <tr class="row">
+                            <td class="field negative">
+                                - ${r.E_VALUE}
+                            </td>
+                            <td class="field">
+                                ${date}
+                            </td>
+                            <td class="field">
+                                <span>${category}</span>
+                            </td>
+                        </tr>
+                    `)
+                } else {
+                    $('.operations-table tbody').append(`
+                        <tr class="row">
+                            <td class="field positive">
+                                + ${r.I_VALUE}
+                            </td>
+                            <td class="field">
+                                ${date}
+                            </td>
+                            <td class="field">
+                                <span>${category}</span>
+                            </td>
+                        </tr>
+                    `)
+                }
+                counter += 1;
+            }
+        } else {
+            $('.register-link').css('display', 'flex');
+            $('.operations-table').css('display', 'none');
+        }
     });
 });

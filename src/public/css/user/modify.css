@@ -60,6 +60,7 @@ input[type=number]{
     outline: none;
     color: black;
     background-color: white;
+    border: none;
 }
 
 .modify-box .modify-form .operation-info .form-field.category-select {

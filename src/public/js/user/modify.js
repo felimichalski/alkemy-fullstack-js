@@ -1,3 +1,54 @@
+$('document').ready(() => {
+    const id = window.location.pathname.split('/')[4] // Getting the operation id from the url
+    $('.modify-form').attr('action', `/dashboard/list/modify/${id}`);
+    $.ajax({
+        url: `/data/operations/${id}`,
+        dataType: 'json',
+        type: 'POST',
+    })
+    .done((result) => {
+        $('#date').val(result.CREATED_AT.slice(0, -1));
+        if(result.E_VALUE) { // Checking if are expenses or income
+            $('#amount').val(result.E_VALUE);
+        } else {
+            $('#amount').val(result.I_VALUE);
+        }
+        $.ajax({
+            url: "/data/categories",
+            dataType: 'json',
+            type: 'POST',
+        })
+        .done((categories) => {
+            if(categories.length > 0) {
+                $('.hide-category').remove();
+                for(cat of categories) {
+                    if(cat == result.CATEGORY) {
+                        $('.category-select').append(`
+                            <option value="${cat}" selected>${cat}</option>
+                        `)
+                    } else {
+                        $('.category-select').append(`
+                            <option value="${cat}">${cat}</option>
+                        `)
+                    }
+                }
+                $('.category-select').append("<option value='other'>Other</option>")
+            } else {
+                $('.show-category').remove();
+            }
+
+            $('.category-select').change((e) => {
+                if(e.target.value === 'other') {
+                    $('.new-category').css('display', 'block');
+                } else {
+                    $('.new-category').val('');
+                    $('.new-category').css('display', 'none');
+                }
+            });
+        })
+    })
+})
+
 if($('.modify-box').outerHeight() < $(window).height()) {
     $('.modify-box').css('justify-content', 'center');
 } else {
@@ -9,15 +60,6 @@ $(window).resize(() => {
         $('.modify-box').css('justify-content', 'center');
     } else {
         $('.modify-box').css('justify-content', 'start');
-    }
-});
-
-$('.category-select').change((e) => {
-    if(e.target.value === 'other') {
-        $('.new-category').css('display', 'block');
-    } else {
-        $('.new-category').val('');
-        $('.new-category').css('display', 'none');
     }
 });
 
