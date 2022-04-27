@@ -91,4 +91,20 @@ Fill in those variables with your own info:
 - NODEMAILER_PASSWORD: your google app password.
 
 To obtain a google app password, go to [Google account](https://myaccount.google.com/) > [Security](https://myaccount.google.com/security) > [2-Step verification](https://myaccount.google.com/signinoptions/two-step-verification/enroll-welcome) and activate it.
-Then, go back, click on App password, select app 'Other' and generate one. With that password you are able to use nodemailer system.
+Then, go back, click on App passwords, select app 'Other' and generate one with the name you want. With that password you are able to use nodemailer system.
+
+When you complete these two steps, open a bash in the root of the project again and run:
+
+```bash
+npm start
+```
+
+Then, enter to your browser and navigate to "localhost:" and the port you set before, for example "localhost:3000".
+
+## Example
+
+If you want to see an example of this project working and online, enter to [felimichalski.github.io](https://felimichalski.github.io/).
+
+You can create your own account or use the trial one, whose data is (respect uppercase and lowercase):
+- email: test@test.com
+- password: Test1234
