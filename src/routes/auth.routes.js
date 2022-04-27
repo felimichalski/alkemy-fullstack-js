@@ -1,47 +1,21 @@
 const { Router } = require('express');
 const router = Router();
 
-const passport = require('passport');
-
 const { isLoggedIn, isNotLoggedIn } = require('../lib/protect');
+
+const controllers = require('../controllers/auth')
 
 router.get('/signup', isNotLoggedIn, (req, res) => {
     res.render('auth/signup')
 });
 
-router.post('/signup', isNotLoggedIn, passport.authenticate('local.signup', {
-    session: false,
-    failureRedirect: '/auth/signup',
-    failureFlash: true,
-}), (req, res) => {
-    res.redirect(307, '/auth/success'); // 307 status code is for redirecting with post method so people can't access to /auth/success just by typing that URL
-})
-
 router.get('/login', isNotLoggedIn, (req, res) => {
     res.render('auth/login')
 });
 
-router.post('/login', isNotLoggedIn, passport.authenticate('local.login', {
-    successRedirect: '/dashboard/home',
-    failureRedirect: '/auth/login',
-    failureFlash: true
-}));
-
-router.post('/success', isNotLoggedIn, (req, res) => {
-    res.render('auth/success', {email: req.app.locals.email});
-})
-
 router.get('/recover', isNotLoggedIn, (req, res) => {
     res.render('auth/recover')
 });
-
-router.post('/recover', isNotLoggedIn, passport.authenticate('local.recover', {
-    session: false,
-    successRedirect: '/auth/login',
-    failureRedirect: '/auth/login',
-    failureFlash: true,
-    successFlash: true
-}));
 
 router.get('/change', isNotLoggedIn, (req, res) => {
     const email = req.query.email;
@@ -52,28 +26,19 @@ router.get('/change', isNotLoggedIn, (req, res) => {
     }
 });
 
-router.post('/change', isNotLoggedIn, passport.authenticate('local.change', {
-    session: false,
-    successRedirect: '/auth/login',
-    failureRedirect: '/auth/login',
-    failureFlash: true,
-    successFlash: true
-}));
+router.get('/verification', isNotLoggedIn, controllers.verification);
 
-router.get('/verification', isNotLoggedIn, passport.authenticate('local.verification', {
-    session: false,
-    successRedirect: '/auth/login',
-    failureRedirect: '/auth/login',
-    failureFlash: true,
-    successFlash: true
-}));
+router.post('/signup', isNotLoggedIn, controllers.signup)
 
-router.post('/logout', isLoggedIn, (req,res) => {
-    req.logOut();
-    req.session.destroy(() => {
-        res.redirect('/');
-    });
-});
+router.post('/login', isNotLoggedIn, controllers.login);
+
+router.post('/success', isNotLoggedIn, controllers.success)
+
+router.post('/recover', isNotLoggedIn, controllers.recover);
+
+router.post('/change', isNotLoggedIn, controllers.change);
+
+router.post('/logout', isLoggedIn, controllers.logout);
 
 
 module.exports = router;
