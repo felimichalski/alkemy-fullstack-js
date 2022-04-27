@@ -21,7 +21,7 @@ npm install
 
 ## Usage
 
-If you have already installed mysql, open a bash and run the following command:
+If you have already installed mysql, open a bash in the root of your project and run the following command:
 
 ```
 mysql -u root -p
@@ -89,3 +89,6 @@ Fill in those variables with your own info:
 - SESSION_SECRET: the word or phrase you want without special characters
 - NODEMAILER_EMAIL: your gmail account
 - NODEMAILER_PASSWORD: your google app password.
+
+To obtain a google app password, go to [Google account](https://myaccount.google.com/) > [Security](https://myaccount.google.com/security) > [2-Step verification](https://myaccount.google.com/signinoptions/two-step-verification/enroll-welcome) and activate it.
+Then, go back, click on App password, select app 'Other' and generate one. With that password you are able to use nodemailer system.
