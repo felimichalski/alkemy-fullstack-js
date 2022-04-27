@@ -26,13 +26,16 @@ router.get('/change', isNotLoggedIn, (req, res) => {
     }
 });
 
+router.get('/success', isNotLoggedIn, (req, res) => {
+    res.render('auth/success');
+})
+
 router.get('/verification', isNotLoggedIn, controllers.verification);
 
 router.post('/signup', isNotLoggedIn, controllers.signup)
 
 router.post('/login', isNotLoggedIn, controllers.login);
 
-router.post('/success', isNotLoggedIn, controllers.success)
 
 router.post('/recover', isNotLoggedIn, controllers.recover);
 

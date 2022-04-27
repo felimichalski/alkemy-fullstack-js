@@ -4,11 +4,10 @@ const ctrl = {};
 
 ctrl.signup = passport.authenticate('local.signup', {
     session: false,
+    successRedirect: '/auth/success',
     failureRedirect: '/auth/signup',
     failureFlash: true,
-}), (req, res) => {
-    res.redirect(307, '/auth/success'); // 307 status code is for redirecting with post method so people can't access to /auth/success just by typing that URL
-}
+});
 
 ctrl.verification = passport.authenticate('local.verification', {
     session: false,
@@ -23,10 +22,6 @@ ctrl.login = passport.authenticate('local.login', {
     failureRedirect: '/auth/login',
     failureFlash: true
 });
-
-ctrl.success = (req, res) => {
-    res.render('auth/success', {email: req.app.locals.email});
-};
 
 ctrl.recover =  passport.authenticate('local.recover', {
     session: false,

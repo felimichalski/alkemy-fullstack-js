@@ -47,7 +47,6 @@ app.use((req, res, next) => {
     if(app.locals.success.length < 1) {
         app.locals.success = undefined;
     }
-    app.locals.email = req.body.email;
     app.locals.user = req.user;
     
     next();
