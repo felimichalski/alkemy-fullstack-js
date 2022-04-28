@@ -103,7 +103,7 @@ Then, enter to your browser and navigate to "localhost:" and the port you set be
 
 ## Example
 
-If you want to see an example of this project working and online, go to [alkemy-challenge-fullstack.herokuapp.com](https://alkemy-challenge-fullstack.herokuapp.com).
+If you want to see an example of this project working and online, go to [alkemy-challenge-fullstack.herokuapp.com](https://alkemy-challenge-fullstack.herokuapp.com) (loading times are slow due to hosting).
 
 You can create your own account or use the trial one, whose data is (respect uppercase and lowercase):
 - email: test@test.com
